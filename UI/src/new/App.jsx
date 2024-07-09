@@ -1,16 +1,96 @@
 
+import { useState } from 'react';
 import './App.css'
-import data from "../Data/employees.js"
 import Navbar from './navbar.jsx'
+import { newEmployee, uploadData } from '../Data/employees.js';
 
 
 function App() {
+  let [em , setEm] = useState({}); 
 
+ function setName(evn){
+  let Iname = evn.target.value
+   setEm(Iname);
+  
+   
+ }
+ function setSurname(evn){
+  setEm(evn.target.value);
+  
+}
+function setAge(evn){
+  setEm(evn.target.value);
+  
+}
+function setEmail(evn){
+  setEm(evn.target.value);
+  
+}
+function setPhone(evn){
+  setEm(evn.target.value);
+
+}
+function setPosition(evn){
+  setEm(evn.target.value);
+}
+
+function update(evn){
+
+  let values = [...evn.target];
+  let data = {
+    name :values[0].value,
+    surname : values[1].value,
+    Age : values[2].value,
+    position:  values[3].value,
+    email : values[4].value,
+    phone :values[5].value,  
+    id : null
+  };
+ console.log(data);
+  newEmployee(data)
+  
+  //console.log(values);
+  
+}  
 
   return (
-    <>
-       <h1>Home</h1>
-     
+    <>  
+      <Navbar/>
+        <div className="box">
+        <form action="employees.html" onSubmit={update} method="post">
+          <div>
+            <label htmlFor="name">Name</label>
+            <br />
+            <input type="text" id="name"  name="name" value={em.name} onChange={setName} required/>
+          </div>
+          <div>
+            <label htmlFor="surname">Surname</label>
+            <br />
+            <input type="text" id="surname" value={em.surname} onChange={setSurname} required/>
+          </div>
+          <div>
+            <label htmlFor="Age">Age</label>
+            <br />
+            <input type="Number" id="Age" value={em.Age} onChange={setAge}required/>
+          </div>
+          <div>
+            <label htmlFor="position">Position</label>
+            <br />
+            <input type="text" id="position" value={em.position} onChange={setPosition}required/>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <br />
+            <input type="email" id="email" value={em.email} onChange={setEmail}required/>
+          </div>
+          <div>
+            <label htmlFor="phone">Phone</label>
+            <br />
+            <input type="Number" id="phone" value={em.phone} onChange={setPhone}required/>
+          </div>
+          <button className='btn btn-success' type="submit">Submit</button>
+        </form>
+        </div>
     </>
   )
 }

@@ -10,7 +10,7 @@ export default function Navbar(){
           <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           <a class="nav-link" href="employees.html">Employees</a>
-          <a class="nav-link" href="new.hmtl">New Employee</a>
+          <a class="nav-link" href="new.html">New Employee</a>
           
     </div>
   </div>

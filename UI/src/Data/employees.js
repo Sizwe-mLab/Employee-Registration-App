@@ -1,3 +1,5 @@
+import uniqid from 'uniqid';
+
 let workers = [
     {name: "Lerato" ,surname:"Rapula", Age: 20, email: "lerato@gmail.com", phone: 27768699754, position: "Secretary", id: 1},
     {name: "Thabo" ,surname:"Maleka", Age: 25, email: "thabo@gmail.com", phone: 27768765432, position: "Manager", id: 2},
@@ -12,6 +14,65 @@ let workers = [
     {name: "Khumo" ,surname:"Modupi", Age: 21, email: "khumo@gmail.com", phone: 27767654321, position: "Receptionist", id: 11},
     {name: "Tshepo" ,surname:"Maidula", Age: 32, email: "tshepo@gmail.com", phone: 27767543210, position: "Project Manager", id: 12}
 ];
+workers.map(w => w.id = uniqid.time())
+let uploadData = (data = workers)=>{
+    
+    localStorage.setItem('Workers' , JSON.stringify(data));
+    console.log("Data uploaded")
+}
 
-export let worker = [];
+let getData = ()=>{
+    return JSON.parse(localStorage.getItem('Workers'));
+    
+}
+
+let mapData=(data, id = null)=>{
+    let employees = [...getData()];
+    console.log(employees)
+    console.log(data)
+    if(id !=null)
+    {
+
+
+       let worker =  employees.filter(e => id === e.id);
+
+       worker[0].name =  data[0].value;
+       worker[0].surname =  data[1].value;
+       worker[0].Age = data[2].value;
+       worker[0].position=  data[3].value;
+       worker[0].email = data[4].value;
+       worker[0].phone = data[5].value;   
+       worker[0].id = id;
+       
+      let index = employees.findIndex(obj => obj.id === id);
+        if (index !== -1) {
+         employees[index] = worker[0];
+        }
+
+        uploadData(employees);
+        console.log('data mapped with provided id')
+        console.log(employees)
+    }
+    else{
+
+        console.log('data mapped without id')
+        uploadData(data)
+        console.log(getData())
+       
+
+    }    
+    
+}
+
+let newEmployee = (data) =>{
+    console.log(data)
+    data.id = uniqid.time();
+    workers.push(data);
+    uploadData(workers)
+    console.log('employee added')
+}
+
+
+
+export {uploadData , getData,mapData , newEmployee};
 export default workers;
