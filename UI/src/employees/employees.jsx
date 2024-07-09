@@ -2,16 +2,16 @@ import './employees.css'
 import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
-import { worker } from '../Data/employees';
+
 
 export default function Employees({emp}){
     let [em ,setEmp ] = useState(emp);
     let editSet = (id)=>{
-       worker.push(id);
+       localStorage.setItem('id',`${id}`)
     }
+
     let setSubmit = (evn)=>{
-       
-       //evn.preventDefault();
+
     }
   
 

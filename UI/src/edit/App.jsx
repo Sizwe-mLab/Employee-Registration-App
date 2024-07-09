@@ -1,15 +1,38 @@
 import data, { worker } from "../Data/employees.js"
 import './App.css'
 import Navbar from './navbar.jsx'
+import { useState } from "react"
 
 function App() {
-  console.log(worker)
-
+  let [employee] =data.filter(emp => emp.id == localStorage.getItem('id')) 
+ 
+  let [em , setEm] = useState(employee)
   return (
     <>
-       {
-       
-       }
+        <Navbar/>
+        <form action="">
+          <div>
+            <label htmlFor="name">Name:</label>
+            <br />
+            <input type="text" id="name"  value={em.name}/>
+          </div>
+          <div>
+            <label htmlFor="surname">Surname</label>
+            <br />
+            <input type="text" id="name" value={em.surname}/>
+          </div>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <br />
+            <input type="email" id="email" value={em.email} />
+          </div>
+          <div>
+            <label htmlFor="phone">Phone</label>
+            <br />
+            <input type="Number" id="phone" value={em.phone}/>
+          </div>
+
+        </form>
      
     </>
   )
