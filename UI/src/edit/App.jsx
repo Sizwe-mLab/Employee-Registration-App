@@ -1,38 +1,99 @@
-import data, { worker } from "../Data/employees.js"
+import workers, { mapData } from "../Data/employees.js";
+//import data, { worker } from "../Data/employees.js"
 import './App.css'
 import Navbar from './navbar.jsx'
 import { useState } from "react"
 
+
 function App() {
-  let [employee] =data.filter(emp => emp.id == localStorage.getItem('id')) 
- 
-  let [em , setEm] = useState(employee)
+  let data = JSON.parse(localStorage.getItem('Workers'))
+  
+  let [employee] =data.filter(emp => emp.id == localStorage.getItem('id'));
+
+  console.log(employee)
+
+  let [em , setEm] = useState(employee); 
+
+ function setName(evn){
+  let Iname = evn.target.value
+   setEm(Iname);
+   employee.name = Iname;
+   
+ }
+ function setSurname(evn){
+  setEm(evn.target.value);
+  employee.surname = evn.target.value;
+}
+function setAge(evn){
+  setEm(evn.target.value);
+  employee.age = evn.target.value;
+}
+function setEmail(evn){
+  setEm(evn.target.value);
+  employee.email = evn.target.value;
+}
+function setPhone(evn){
+  setEm(evn.target.value);
+  employee.phone = evn.target.value;
+}
+function setPosition(evn){
+  setEm(evn.target.value);
+  employee.setPosition = evn.target.value;
+  
+}
+
+function update(evn){
+let values = [...evn.target];
+console.log(values);
+console.log(employee.id);
+mapData(values ,employee.id);
+console.log(values);
+
+
+
+
+
+
+}
+
   return (
     <>
         <Navbar/>
-        <form action="">
+        <div className="box">
+        <form action="employees.html" onSubmit={update} method="post">
           <div>
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">Name</label>
             <br />
-            <input type="text" id="name"  value={em.name}/>
+            <input type="text" id="name"  name="name" value={em.name} onChange={setName} required/>
           </div>
           <div>
             <label htmlFor="surname">Surname</label>
             <br />
-            <input type="text" id="name" value={em.surname}/>
+            <input type="text" id="surname" value={em.surname} onChange={setSurname} required/>
           </div>
           <div>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="Age">Age</label>
             <br />
-            <input type="email" id="email" value={em.email} />
+            <input type="Number" id="Age" value={em.Age} onChange={setAge}required/>
+          </div>
+          <div>
+            <label htmlFor="position">Position</label>
+            <br />
+            <input type="text" id="position" value={em.position} onChange={setPosition}required/>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <br />
+            <input type="email" id="email" value={em.email} onChange={setEmail}required/>
           </div>
           <div>
             <label htmlFor="phone">Phone</label>
             <br />
-            <input type="Number" id="phone" value={em.phone}/>
+            <input type="Number" id="phone" value={em.phone} onChange={setPhone}required/>
           </div>
-
+          <button type="submit" onClick={update}>Submit</button>
         </form>
+        </div>
      
     </>
   )

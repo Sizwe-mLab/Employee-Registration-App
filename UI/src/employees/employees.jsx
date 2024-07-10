@@ -2,23 +2,25 @@ import './employees.css'
 import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
+import { getData, mapData } from '../Data/employees';
 
 
-export default function Employees({emp}){
-    let [em ,setEmp ] = useState(emp);
+export default function Employees(){
+    let [em ,setEmp ] = useState(getData());
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
 
     let setSubmit = (evn)=>{
-
+        console.log(evn.target)
     }
   
 
     let deleteHandle = (id)=>{
         
        setEmp(oldEmp => oldEmp.filter(e => e.id !== id))
-       console.log(emp)
+
+      mapData(getData().filter(e => e.id !== id));
         
     }
 

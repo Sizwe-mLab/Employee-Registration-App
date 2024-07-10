@@ -1,11 +1,20 @@
 
 import './App.css'
-import data from "../Data/employees.js"
 import Navbar from './navbar.jsx'
 import Employees from './employees.jsx'
+import { getData, uploadData,mapData } from '../Data/employees.js'
 
 function App() {
-
+  
+  if([...JSON.parse(localStorage.getItem('Workers'))].length ==0)
+  {
+    console.log([JSON.parse(localStorage.getItem('Workers'))].length)
+    uploadData();
+    console.log('data reset')
+  }
+  
+  let data = getData(Worker);
+  console.log(data)
 
   return (
     <>

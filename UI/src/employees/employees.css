@@ -8,6 +8,7 @@ body{
     gap: 20px;
     grid-auto-rows: minmax(100px, auto);
     padding: 2rem;
+    flex-wrap: wrap;
 }
 
 .emp{

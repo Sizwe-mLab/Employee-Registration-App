@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className='root'>
-    <Navbar/>
     <Home className ='home'/>
      
     </div>
