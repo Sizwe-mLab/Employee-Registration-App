@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { getData } from "../Data/employees";
+import { getData ,getOneEmployee,mapData} from "../Data/employees";
 
 
 export default function Employee(){
 
-    let [em ,setEmp ] = useState(getData());
+    let [em ,setEmp ] = useState(getOneEmployee());
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
 
     let setSubmit = (evn)=>{
-        console.log(evn.target)
+        //console.log(evn.target)
     }
   
 

@@ -2,7 +2,7 @@ import './employees.css'
 import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
-import { getData, mapData } from '../Data/employees';
+import { getData, getOneEmployee, mapData } from '../Data/employees';
 
 
 export default function Employees(){
@@ -23,6 +23,15 @@ export default function Employees(){
       mapData(getData().filter(e => e.id !== id));
         
     }
+    let viewHandle = (id)=>{
+
+        let employee = em.filter(e => e.id == id);
+        console.log([employee])
+        localStorage.setItem('employee' , JSON.stringify([...employee]));
+        console.log(employee);
+        console.log('employee is passed to localStorage');
+        console.log(getOneEmployee());
+    }
 
     return (
         <>
@@ -41,7 +50,7 @@ export default function Employees(){
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
-                        <a href="employee.html">View</a>
+                        <a href="employee.html" onClick={()=>viewHandle(e.id)}>View</a>
                                
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     
