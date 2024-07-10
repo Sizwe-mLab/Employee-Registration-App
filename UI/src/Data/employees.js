@@ -21,7 +21,8 @@ let uploadData = (data = workers)=>{
     console.log("Data uploaded")
 }
 
-let getData = ()=>{
+function getData(){
+   
     return JSON.parse(localStorage.getItem('Workers'));
     
 }
@@ -64,6 +65,10 @@ let mapData=(data, id = null)=>{
     
 }
 
+let getOneEmployee =()=>{
+    return JSON.parse(localStorage.getItem('employee'));
+}
+
 let newEmployee = (data) =>{
     console.log(data)
     data.id = uniqid.time();
@@ -74,5 +79,5 @@ let newEmployee = (data) =>{
 
 
 
-export {uploadData , getData,mapData , newEmployee};
+export {uploadData , getData,mapData , newEmployee,getOneEmployee};
 export default workers;
