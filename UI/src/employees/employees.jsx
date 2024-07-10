@@ -41,7 +41,7 @@ export default function Employees(){
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
-                        
+                        <a href="employee.html">View</a>
                                
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     

@@ -26,6 +26,15 @@ button{
     transition: .4s;
     
 }
+.emp a{
+    padding: .2rem 1rem;
+    border: none;
+    background-color: gray;
+    color: blue;
+    border-radius: 15px;
+    transition: .4s;
+    text-decoration: none; 
+}
 button[type = 'Delete']{
     background-color: red;
 }

@@ -1,8 +1,6 @@
 
 import './App.css'
 import Navbar from './navbar.jsx'
-import Employees from './employees.jsx'
-import { getData, uploadData,mapData } from '../Data/employees.js'
 import Employee from './employee.jsx'
 
 function App() {

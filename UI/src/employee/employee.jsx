@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { getData } from "../Data/employees";
+
+
 export default function Employee(){
 
     let [em ,setEmp ] = useState(getData());

@@ -8,13 +8,13 @@ function App() {
   
   if(localStorage.getItem('Workers').length ==0 || [localStorage.getItem('Workers')][0] == null)
   {
-    console.log([localStorage.getItem('Workers')].length)
+    //console.log([localStorage.getItem('Workers')].length)
     uploadData();
-    console.log('data reset')
+    //console.log('data reset')
   }
   
   let data = getData(Worker);
-  console.log([localStorage.getItem('Workers')] , 'after get work')
+  //console.log([localStorage.getItem('Workers')] , 'after get work')
 
   return (
     <>
