@@ -12,7 +12,7 @@ export default function Employees(){
     }
 
     let setSubmit = (evn)=>{
-        console.log(evn.target)
+        //console.log(evn.target)
     }
   
 
@@ -26,11 +26,11 @@ export default function Employees(){
     let viewHandle = (id)=>{
 
         let employee = em.filter(e => e.id == id);
-        console.log([employee])
+        //console.log([employee])
         localStorage.setItem('employee' , JSON.stringify([...employee]));
-        console.log(employee);
-        console.log('employee is passed to localStorage');
-        console.log(getOneEmployee());
+        //console.log(employee);
+        //console.log('employee is passed to localStorage');
+        //console.log(getOneEmployee());
     }
 
     return (
@@ -50,7 +50,9 @@ export default function Employees(){
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
-                        <a href="employee.html" onClick={()=>viewHandle(e.id)}>View</a>
+                    <form action="employee.html" >
+                        <button onClick={()=>viewHandle(e.id) }className=' btn btn-success'>View</button>
+                    </form>
                                
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     

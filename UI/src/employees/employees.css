@@ -1,6 +1,11 @@
-body{
-    background-color: aqua;
-}
+:root{
+
+    --Primary-color: #008080;
+    --Secondary-color: #20b2aa;
+    --Accent-color: #e0f7fa;
+    --Text-color: #333333;
+    }
+
 
 .emps{
     display: grid;
@@ -13,8 +18,15 @@ body{
 
 .emp{
     
-    box-shadow: 0px 0px 5px 5px blue;
+    box-shadow: 0px 0px 5px 5px var(--Text-color);
     padding: 1rem;
+    background-color: var(--Secondary-color);
+    
+}
+
+.emp>h3{
+    color: var(--Accent-color);
+    border-bottom:2px solid var(--Text-color);
 }
 
 button{
@@ -22,7 +34,7 @@ button{
     border: none;
     background-color: blue;
     color: aliceblue;
-    border-radius: 15px;
+    border-radius: 15px !important;
     transition: .4s;
     
 }

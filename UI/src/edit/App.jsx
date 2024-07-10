@@ -60,7 +60,7 @@ console.log(values);
     <>
         <Navbar/>
         <div className="box">
-        <form action="employees.html" onSubmit={update} method="post">
+        <form action="employee.html" onSubmit={update} method="post">
           <div>
             <label htmlFor="name">Name</label>
             <br />
