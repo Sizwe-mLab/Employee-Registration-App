@@ -1,0 +1,38 @@
+body{
+    background-color: aqua;
+}
+
+.emps{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+    padding: 2rem;
+}
+
+.emp{
+    
+    box-shadow: 0px 0px 5px 5px blue;
+    padding: 1rem;
+}
+
+button{
+    padding: .2rem 1rem;
+    border: none;
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 15px;
+    transition: .4s;
+    
+}
+button[type = 'Delete']{
+    background-color: red;
+}
+button:hover{
+    box-shadow: 0px 0px 5px 3px;
+    padding:.3rem 1.2rem ;
+}
+.forms{
+    display: flex;
+    justify-content: space-between;
+}
