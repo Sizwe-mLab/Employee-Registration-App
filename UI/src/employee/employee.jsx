@@ -1,11 +1,5 @@
-import './employees.css'
-import Edit from './Edit';
-import { useState } from 'react';
-import App from '../edit/App';
-import { getData, mapData } from '../Data/employees';
+export default function Employee(){
 
-
-export default function Employees(){
     let [em ,setEmp ] = useState(getData());
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
@@ -23,36 +17,33 @@ export default function Employees(){
       mapData(getData().filter(e => e.id !== id));
         
     }
-
     return (
         <>
-        <h1>Employees</h1>
         <div className='emps'>
         
         {
                 em.map(e =>
                 <div className='emp'  key={e.id} >
+                    <h2>Position: {e.position}</h2>
+                    <h3>Name: {e.name}</h3> 
+                    <h4>Surname: {e.surname}</h4>
+                    <h4>Age: {e.Age}</h4>
+                    <h4>Email: {e.email}</h4>
+                    <h4>Phone: {e.phone}</h4>
 
-                    <h3>{e.name} {e.surname}</h3> 
-                    <p>Position: {e.position}</p>
 
                     <div className='forms'>
                       <form action="edit.html" onSubmit={setSubmit} id={e.id}>
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
-
-                        
                                
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     
                     </div>
 
-                 </div> )      
+                 </div> )     
         }
 
         </div>
-        </>
-    )
-
+        </>)
 }
-
