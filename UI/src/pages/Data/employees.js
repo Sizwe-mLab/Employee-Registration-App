@@ -1,4 +1,5 @@
 import uniqid from 'uniqid';
+import Employee from '../employee/employee';
 
 let workers = [
     {name: "Lerato" ,surname:"Rapula", Age: 20, email: "lerato@gmail.com", phone: 27768699754, position: "Secretary", id: 1},
@@ -14,13 +15,13 @@ let workers = [
     {name: "Khumo" ,surname:"Modupi", Age: 21, email: "khumo@gmail.com", phone: 27767654321, position: "Receptionist", id: 11},
     {name: "Tshepo" ,surname:"Maidula", Age: 32, email: "tshepo@gmail.com", phone: 27767543210, position: "Project Manager", id: 12}
 ];
-workers.map(w => w.id = uniqid.time())
+
 
 
 let uploadData = (data = workers)=>{
     
     localStorage.setItem('Workers' , JSON.stringify(data));
-    console.log("Data uploaded")
+    //console.log("Data uploaded")
 }
 
 function getData(){
@@ -28,16 +29,18 @@ function getData(){
     return JSON.parse(localStorage.getItem('Workers'));
     
 }
+let mappedData = (data)=> data;
 
 let mapData=(data, id = null)=>{
-    let employees = [...getData()];
-    console.log(employees)
-    console.log(data)
+    let employees = getData();
+   // console.log('all employees',employees)
+   // console.log(data)
     if(id !=null)
     {
-
-
-       let worker =  employees.filter(e => id === e.id);
+//console.log('id:',id)
+        //console.log('work:',employees);
+       let worker =  employees.filter(e => Number(id) === Number(e.id));
+       //console.log(worker)
 
        worker[0].name =  data[0].value;
        worker[0].surname =  data[1].value;
@@ -45,22 +48,24 @@ let mapData=(data, id = null)=>{
        worker[0].position=  data[3].value;
        worker[0].email = data[4].value;
        worker[0].phone = data[5].value;   
-       worker[0].id = id;
-       
+       worker[0].id = id
+
+       //console.log('after mapping' ,worker[0]);
+
       let index = employees.findIndex(obj => obj.id === id);
         if (index !== -1) {
          employees[index] = worker[0];
         }
-
+        //employee
         uploadData(employees);
-        console.log('data mapped with provided id')
-        console.log(employees)
+       // console.log('data mapped with provided id')
+       // console.log(employees)
     }
     else{
-
-        console.log('data mapped without id')
+        mappedData(data)
+        //console.log('data mapped without id')
         uploadData(data)
-        console.log(getData())
+       // console.log(getData())
        
 
     }    
@@ -72,18 +77,18 @@ let getOneEmployee =()=>{
 }
 
 let newEmployee = (data) =>{
-    console.log([data])
+    //console.log([data])
     data.id = uniqid.time();
     if(localStorage.getItem('Workers') == null || !localStorage.getItem('Workers')) 
         {
             uploadData([data]);
-            console.log('Data is empty and employee added');
+            //console.log('Data is empty and employee added');
         }
         else{
             workers = JSON.parse(localStorage.getItem('Workers'));
             workers.push(data);
             uploadData(workers);
-            console.log('Data is updated with new employee');
+           // console.log('Data is updated with new employee');
         }  
   
 }
