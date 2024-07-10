@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import './App.css'
+import '../edit/App.css'
 import Navbar from './navbar.jsx'
 import { newEmployee, uploadData } from '../Data/employees.js';
 
@@ -35,7 +35,6 @@ function setPosition(evn){
 }
 
 function update(evn){
-
   let values = [...evn.target];
   let data = {
     name :values[0].value,
@@ -46,7 +45,7 @@ function update(evn){
     phone :values[5].value,  
     id : null
   };
- console.log(data);
+ //console.log(data);
   newEmployee(data)
   
   //console.log(values);

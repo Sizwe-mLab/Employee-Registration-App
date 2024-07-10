@@ -6,7 +6,7 @@ import { getData, uploadData,mapData } from '../Data/employees.js'
 
 function App() {
   
-  if(localStorage.getItem('Workers').length ==0 || [localStorage.getItem('Workers')][0] == null)
+  if(JSON.parse(localStorage.getItem('Workers')) ==null || JSON.parse(localStorage.getItem('Workers'))[0] == undefined)
   {
     //console.log([localStorage.getItem('Workers')].length)
     uploadData();

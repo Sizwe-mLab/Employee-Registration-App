@@ -1,5 +1,5 @@
 
-import './App.css'
+import '../edit/App.css'
 import Navbar from './navbar.jsx'
 import Employee from './employee.jsx'
 

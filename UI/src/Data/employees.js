@@ -15,6 +15,8 @@ let workers = [
     {name: "Tshepo" ,surname:"Maidula", Age: 32, email: "tshepo@gmail.com", phone: 27767543210, position: "Project Manager", id: 12}
 ];
 workers.map(w => w.id = uniqid.time())
+
+
 let uploadData = (data = workers)=>{
     
     localStorage.setItem('Workers' , JSON.stringify(data));
@@ -70,11 +72,20 @@ let getOneEmployee =()=>{
 }
 
 let newEmployee = (data) =>{
-    console.log(data)
+    console.log([data])
     data.id = uniqid.time();
-    workers.push(data);
-    uploadData(workers)
-    console.log('employee added')
+    if(localStorage.getItem('Workers') == null || !localStorage.getItem('Workers')) 
+        {
+            uploadData([data]);
+            console.log('Data is empty and employee added');
+        }
+        else{
+            workers = JSON.parse(localStorage.getItem('Workers'));
+            workers.push(data);
+            uploadData(workers);
+            console.log('Data is updated with new employee');
+        }  
+  
 }
 
 
