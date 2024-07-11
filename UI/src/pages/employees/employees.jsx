@@ -3,6 +3,7 @@ import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
 import { getData, getOneEmployee, mapData } from '../Data/employees';
+import Search from './search';
 
 
 export default function Employees(){
@@ -32,10 +33,18 @@ export default function Employees(){
         //console.log('employee is passed to localStorage');
         //console.log(getOneEmployee());
     }
+    let results=localStorage.getItem('results');
+
 
     return (
         <>
+        <div className='top'>
         <h1>Employees</h1>
+        <Search/>
+        </div>
+        
+        
+
         <div className='emps'>
         
         {
@@ -43,8 +52,9 @@ export default function Employees(){
                 <div className='emp'  key={e.id} >
 
                     <h3>{e.name} {e.surname}</h3> 
+                    <span>ID: {e.id}</span>
                     <p>Position: {e.position}</p>
-
+                
                     <div className='forms'>
                       <form action="edit.html" onSubmit={setSubmit} id={e.id}>
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>

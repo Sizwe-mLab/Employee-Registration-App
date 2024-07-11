@@ -58,3 +58,43 @@ button:hover{
     display: flex;
     justify-content: space-between;
 }
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 2rem;
+    border: 2px solid var(--Accent-color);
+    border-radius: 35px;
+    margin: 10px 2rem;
+    background-color: var(--Secondary-color);
+}
+.top>form>div{
+    display: inline;
+    position: relative;
+    margin-right:20px ;
+}
+.top>form>select{
+    margin-right: 10px;
+    border: 2px solid var(--Accent-color);
+    border-radius: 15px;
+    color: var(--Secondary-color);
+}
+.top>form>div>span{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    display: inline-block;
+    color: var(--Secondary-color);
+}
+.top>form>div>span>i{
+ font-size: 1.5rem;
+}
+.top>form>div>input{
+    border-radius: 28px;
+    padding: .4rem 1rem;
+    border: 2px solid var(--Primary-color);
+    height: 100%;
+    color: var(--Secondary-color);
+    font-weight: 500;
+    
+}
