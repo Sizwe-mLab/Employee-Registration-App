@@ -1,7 +1,5 @@
 
 import './App.css'
-import data from "../Data/employees.js"
-import Navbar from './navbar.jsx'
 import Home from './home.jsx'
 
 function App() {

@@ -1,4 +1,5 @@
-import workers, { mapData } from "../Data/employees.js";
+import workers, { getData, getOneEmployee, mapData } from "../Data/employees.js";
+import Employee from "../employee/employee.jsx";
 //import data, { worker } from "../Data/employees.js"
 import './App.css'
 import Navbar from './navbar.jsx'
@@ -7,10 +8,10 @@ import { useState } from "react"
 
 function App() {
   let data = JSON.parse(localStorage.getItem('Workers'))
-  
+ 
   let [employee] =data.filter(emp => emp.id == localStorage.getItem('id'));
 
-  console.log(employee)
+ // console.log(employee)
 
   let [em , setEm] = useState(employee); 
 
@@ -43,16 +44,20 @@ function setPosition(evn){
 }
 
 function update(evn){
+//evn.preventDefault();
 let values = [...evn.target];
-console.log(values);
-console.log(employee.id);
-mapData(values ,employee.id);
-console.log(values);
+//console.log('values:',values);
+mapData(values ,localStorage.getItem('id'));
 
+//let employee = em.filter(e => e.id == localStorage.getItem('id'));
+employee = getData()
+//.log('employees' ,employee)
+let k =employee.filter(e => e.id == localStorage.getItem('id'))
+//console.log('last:' ,k)
+//k[0].id ==JSON.parse(localStorage.getItem('employee'))[0].id?
+localStorage.setItem('employee',JSON.stringify(k))
 
-
-
-
+//localStorage.setItem('employee' , JSON.stringify(employee));
 
 }
 
@@ -91,7 +96,7 @@ console.log(values);
             <br />
             <input type="Number" id="phone" value={em.phone} onChange={setPhone}required/>
           </div>
-          <button type="submit" onClick={update}>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         </div>
      
