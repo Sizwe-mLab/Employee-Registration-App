@@ -9,7 +9,7 @@ function App() {
   const [change , setChange] = useState({name:'',surname:'', position:'',email:'', Age:null , phone:null}); 
   const [validate , setValidate] = useState({name:true,surname:true, position:true,email:true, Age:true , phone:true})
 
-  let confermValid  = ()=>{
+  let confirmValid  = ()=>{
     return validate.Age && validate.email && validate.name && validate.surname && validate.position && validate.phone
  }
 
@@ -87,7 +87,7 @@ function update(evn){
             <input type="Number" id="phone" value={change.phone} onChange={HandleChange}required/>
             {!validate.phone && <p style={{color:'red'}}>phone number can not be empty or phone number must start with 0</p>}
           </div>
-          {confermValid()? <button className='btn btn-success' type="submit">Submit</button>: <button className='btn btn-success' type="submit" disabled>Submit</button>}
+          {confirmValid()? <button className='btn btn-success' type="submit">Submit</button>: <button className='btn btn-success' type="submit" disabled>Submit</button>}
         </form>
         </div>
     </>
