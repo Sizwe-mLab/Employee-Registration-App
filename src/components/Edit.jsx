@@ -1,10 +1,9 @@
-import workers, { getData, getOneEmployee, mapData } from "../../Data/employees.js";
-import Employee from "../employee/employee.jsx";
-//import data, { worker } from "../Data/employees.js"
-import './App.css'
-import Navbar from './navbar.jsx'
+import workers, { getData, getOneEmployee, mapData } from "../Data/employees.js";
+import Employee from "./employee.jsx";
+import '../style/App.css'
+import Navbar from "./navbar.jsx";
 import { useState } from "react"
-import Validation from "../Validate.js";
+import Validation from "../pages/Validate.js";
 
 
 function App() {
@@ -52,7 +51,7 @@ return (
   <>  
     <Navbar/>
       <div className="box">
-      <form action="employees.html" onSubmit={update}>
+      <form action="/employees" onSubmit={update}>
 
         <div>
           <div className='names'>

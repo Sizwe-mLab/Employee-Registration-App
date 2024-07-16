@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
-import '../edit/App.css'
-import Navbar from './navbar.jsx'
-import { newEmployee, uploadData } from '../../Data/employees.js';
-import validation from '../Validate.js';
+import '../style/App.css'
+import Navbar from '../components/navbar.jsx'
+import { newEmployee, uploadData } from '../Data/employees.js';
+import validation from './Validate.js';
 
-function App() {
-  const [change , setChange] = useState({name:'',surname:'', position:'',email:'', Age:null , phone:null}); 
+
+function Add() {
+  const [change , setChange] = useState({name:'',surname:'',email:'',position:'', Age:null , phone:null}); 
   const [validate , setValidate] = useState({name:true,surname:true, position:true,email:true, Age:true , phone:true})
 
   let confirmValid  = ()=>{
@@ -29,8 +30,8 @@ function update(evn){
     name :values[0].value,
     surname : values[1].value,
     Age : values[2].value,
-    position:  values[3].value,
-    email : values[4].value,
+    position:  values[4].value,
+    email : values[3].value,
     phone :values[5].value,  
     id : null
   };
@@ -45,7 +46,7 @@ function update(evn){
     <>  
       <Navbar/>
         <div className="box">
-        <form action="employees.html" onSubmit={update}>
+        <form action="/employees" onSubmit={update}>
 
           <div>
             <div className='names'>
@@ -94,7 +95,7 @@ function update(evn){
   )
 }
 
-export default App
+export default Add
 
 // let workers = [
 //   {name: "Lerato", Age: 20, email: "lerato@gmail.com", phone: 27768699754, position: "Secretary", id: 1},

@@ -24,7 +24,7 @@
     
 }
 
-.emp>h3{
+.emps>.emp>h3{
     color: var(--Accent-color);
     border-bottom:2px solid var(--Text-color);
 }

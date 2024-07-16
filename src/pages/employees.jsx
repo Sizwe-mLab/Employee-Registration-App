@@ -1,12 +1,13 @@
-import './employees.css'
-import Edit from './Edit';
+import '../style/employees.css'
+import Edit from '../components/Edit';
 import { useState } from 'react';
-import App from '../edit/App';
-import { getData, getOneEmployee, mapData,uploadData } from '../../Data/employees';
-import Search from './search';
+import { getData, getOneEmployee, mapData,uploadData } from '../Data/employees';
+import Search from '../components/search';
+import Navbar from '../components/navbar';
 
 
 export default function Employees(){
+    
     let [em ,setEmp ] = useState(getData());
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
@@ -41,10 +42,10 @@ export default function Employees(){
 
     return (
         <>
+        <Navbar/>
         <div className='top'>
         <h1>Employees</h1>
         <Search/>
-        {console.log(em.length)}
         { em.length == '0' ?<button type='submit' onClick={defaultData}>Generate demo employees</button>:null}
         </div>
         
@@ -61,11 +62,11 @@ export default function Employees(){
                     <p>Position: {e.position}</p>
                 
                     <div className='forms'>
-                      <form action="edit.html" onSubmit={setSubmit} id={e.id}>
+                      <form action="/employees/employee/edit" onSubmit={setSubmit} id={e.id}>
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
-                    <form action="employee.html" >
+                    <form action="/employees/employee" >
                         <button onClick={()=>viewHandle(e.id) }className=' btn btn-success'>View</button>
                     </form>
                                

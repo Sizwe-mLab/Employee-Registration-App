@@ -1,20 +1,35 @@
 
-import './App.css'
-import Navbar from './navbar.jsx'
-import Employees from './employees.jsx'
-import { getData, uploadData,mapData } from '../../Data/employees.js'
+import './style/App.css'
+import {BrowserRouter, Route,Routes}from 'react-router-dom'
+
+//pages
+import Employees from './pages/employees.jsx'
+import Add from './pages/Add.jsx'
+import Home from './pages/home.jsx'
+import Employee from './components/employee'
+
+//routs
+import Edit from './components/Edit.jsx'
+
+
+
+
 
 function App() {
-  
-
-  //console.log([localStorage.getItem('Workers')] , 'after get work')
 
   return (
-    <>
-    <Navbar/>
-    <Employees/>
-     
-    </>
+    <div className='root'>
+    <BrowserRouter>
+    <Routes>
+    <Route   path='/'   element={<Home/>} />  
+    <Route   path='/employees'   element={<Employees/>} /> 
+    <Route   path='/employees/add'   element={<Add/>} /> 
+    <Route   path='/employees/employee'   element={<Employee/>} /> 
+    <Route   path='/employees/employee/edit'   element={<Edit/>} /> 
+
+    </Routes>
+    </BrowserRouter>  
+    </div>
   )
 }
 

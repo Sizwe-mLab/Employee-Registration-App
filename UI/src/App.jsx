@@ -1,14 +1,18 @@
 
 import './App.css'
-import Home from './home.jsx'
+import data from "../Data/employees.js"
+import Navbar from './navbar.jsx'
+import Employees from './employees.jsx'
 
 function App() {
 
+
   return (
-    <div className='root'>
-    <Home className ='home'/>
+    <>
+    <Navbar/>
+    <Employees  emp = {data.map(e=>e)} />
      
-    </div>
+    </>
   )
 }
 

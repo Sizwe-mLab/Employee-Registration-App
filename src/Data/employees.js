@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import Employee from '../pages/employee/employee';
+// import Employee from '../pages/employee';
 
 let workers = [
     {name: "Lerato" ,surname:"Rapula", Age: 20, email: "lerato@gmail.com", phone: '0768699754', position: "Secretary", id: 1},
@@ -45,8 +45,9 @@ let mapData=(data, id = null)=>{
        worker[0].name =  data[0].value;
        worker[0].surname =  data[1].value;
        worker[0].Age = data[2].value;
-       worker[0].position=  data[3].value;
-       worker[0].email = data[4].value;
+       worker[0].email = data[3].value;
+       worker[0].position=  data[4].value;
+       
        worker[0].phone = data[5].value;   
        worker[0].id = id
 

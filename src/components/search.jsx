@@ -1,5 +1,5 @@
-import { getData } from '../../Data/employees';
-import './search.css'
+import { getData } from '../Data/employees';
+import '../style/search.css'
 import { useState } from 'react'
 export default function Search(){
     let [name, setName] = useState();
@@ -16,7 +16,7 @@ export default function Search(){
 
     let employee ;
 
-    let searchHandle = (name = name)=>{
+    let searchHandle = (name)=>{
 
     if(options === 'id'){
     employee = employees.filter(e => e.id == name);
@@ -51,14 +51,14 @@ export default function Search(){
     
 
     return (<>
-    <form action="./employee.html" onSubmit={submitHandle}>
+    <form action="/employees/employee" onSubmit={submitHandle} >
     <select name="options" id="option" onChange={selectHandle} defaultChecked = 'name'>
-        <option value='name'  selected >Name</option>
+        <option value='name'>Name</option>
         <option value= 'position'>Position</option>
         <option value='id' >ID</option>
     </select>
     <div>
-    <span><i class='bx bx-search'></i></span>
+    <span><i className='bx bx-search'></i></span>
     <input type="text" placeholder="Search by Name" value={name} onChange={nameHandle} required/>
     </div>
     <button onClick={()=>searchHandle(name) }>Search</button>

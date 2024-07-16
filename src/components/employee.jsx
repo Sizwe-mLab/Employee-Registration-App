@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getData ,getOneEmployee,mapData} from "../../Data/employees";
-import './employee.css'
+import { getData ,getOneEmployee,mapData} from "../Data/employees";
+import '../style/employee.css'
 
 export default function Employee(){
 
@@ -8,7 +8,6 @@ export default function Employee(){
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
-
     let setSubmit = (evn)=>{
         //console.log(evn.target)
     }
