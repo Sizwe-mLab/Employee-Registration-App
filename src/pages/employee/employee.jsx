@@ -45,12 +45,13 @@ export default function Employee(){
                      <form action="employees.html">
                         <button>Back</button>
                      </form>
-                    
+                     { e.name?
                         <form action="">  
                         <button onClick={() => deleteHandle(e.id)} type='delete' >Delete</button>
                         </form> 
+                        : null }
                     </div>
-
+                    
                  </div> )     
         }
 
