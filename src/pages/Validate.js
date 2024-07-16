@@ -5,7 +5,7 @@ export default function Validation(input,) {
 
   //id == 'Age' || id == 'phone'? value = Number(value):null
    //console.log(value)
-
+    
     if(id != 'Age' && id != 'phone')
     {
       value = value.trim();
@@ -14,17 +14,16 @@ export default function Validation(input,) {
         return false
       }
       else{
-        let specialChar = `0123456789!@#$%^&*()_+[]{}|;:'",.<>?/~\`-=` + '\\'
-        for(let char of value)
-        {
-            if(!specialChar.includes(char))
+        let specialChar = `0123456789!@#$%^&*()_+[]{}|;:'",.<>?/~\`-=` + '\\';
+        
+            if(!specialChar.includes(value.at(-1)))
             {
                 return true
             }
             else{
                 return false
             }
-        }
+        
         
       }
     }
