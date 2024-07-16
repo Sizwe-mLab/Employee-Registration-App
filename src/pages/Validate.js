@@ -1,48 +1,20 @@
-export default function Validation(input,) {
+export default function Validation(input) {
   let { id, value } = input;
-  
-  let type = typeof value;
+  let specialChar = (`0123456789!@#$%^&*()_+[]{}|;:'",.<>?/~\`-=` + "\\").split(
+    ""
+  );
 
-  //id == 'Age' || id == 'phone'? value = Number(value):null
-   //console.log(value)
-    
-    if(id != 'Age' && id != 'phone')
-    {
-      value = value.trim();
-      if(value.length == 0)
-      {
-        return false
-      }
-      else{
-        let specialChar = `0123456789!@#$%^&*()_+[]{}|;:'",.<>?/~\`-=` + '\\';
-        
-        for( let char of specialChar)
-        {   console.log(char)
-            if(!value.includes(char))
-            {
-                return true
-            }
-            else{
-                return false
-            }
-        }
-        
-      }
+  if (id != "Age" && id != "phone") {
+    value = value.trim();
+    //checks if the the input does not start with space or special character then return true;
+    return (
+      value.length != 0 && specialChar.some((char) => char != value.at(-1))
+    );
+  } else {
+    if (id != "Age") {
+      return value.slice(0, 1) != "0" || value.length != 10 ? false : true;
+    } else {
+      return value >= 18 && value <= 75;
     }
-    else{
-        if(id != 'Age')
-        {
-           
-            console.log(value.length);
-            return value.slice(0,1) != '0' || value.length != 10 ? false : true
-
-        }
-        else{
-            
-            return value >= 18 && value <=75
-        }
-    }
-
-
-
+  }
 }
