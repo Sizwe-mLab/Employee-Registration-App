@@ -16,14 +16,16 @@ export default function Validation(input,) {
       else{
         let specialChar = `0123456789!@#$%^&*()_+[]{}|;:'",.<>?/~\`-=` + '\\';
         
-            if(!specialChar.includes(value.at(-1)))
+        for( let char of specialChar)
+        {   console.log(char)
+            if(!value.includes(char))
             {
                 return true
             }
             else{
                 return false
             }
-        
+        }
         
       }
     }
