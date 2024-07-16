@@ -1,4 +1,4 @@
-import { getData } from '../Data/employees';
+import { getData } from '../../Data/employees';
 import './search.css'
 import { useState } from 'react'
 export default function Search(){

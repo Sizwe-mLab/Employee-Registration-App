@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import Employee from '../employee/employee';
+import Employee from '../pages/employee/employee';
 
 let workers = [
     {name: "Lerato" ,surname:"Rapula", Age: 20, email: "lerato@gmail.com", phone: '0768699754', position: "Secretary", id: 1},

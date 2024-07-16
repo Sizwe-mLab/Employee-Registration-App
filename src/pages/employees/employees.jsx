@@ -2,7 +2,7 @@ import './employees.css'
 import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
-import { getData, getOneEmployee, mapData,uploadData } from '../Data/employees';
+import { getData, getOneEmployee, mapData,uploadData } from '../../Data/employees';
 import Search from './search';
 
 

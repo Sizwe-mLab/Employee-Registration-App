@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getData ,getOneEmployee,mapData} from "../Data/employees";
+import { getData ,getOneEmployee,mapData} from "../../Data/employees";
 import './employee.css'
 
 export default function Employee(){
