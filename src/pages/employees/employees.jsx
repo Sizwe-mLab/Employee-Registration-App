@@ -2,7 +2,7 @@ import './employees.css'
 import Edit from './Edit';
 import { useState } from 'react';
 import App from '../edit/App';
-import { getData, getOneEmployee, mapData } from '../Data/employees';
+import { getData, getOneEmployee, mapData,uploadData } from '../Data/employees';
 import Search from './search';
 
 
@@ -27,20 +27,25 @@ export default function Employees(){
     let viewHandle = (id)=>{
 
         let employee = em.filter(e => e.id == id);
-        //console.log([employee])
+
         localStorage.setItem('employee' , JSON.stringify([...employee]));
-        //console.log(employee);
-        //console.log('employee is passed to localStorage');
-        //console.log(getOneEmployee());
+
     }
     let results=localStorage.getItem('results');
 
+    function defaultData(){
+        uploadData();
+        setEmp(getData(Worker));
+        
+      }
 
     return (
         <>
         <div className='top'>
         <h1>Employees</h1>
         <Search/>
+        {console.log(em.length)}
+        { em.length == '0' ?<button type='submit' onClick={defaultData}>Generate default employees</button>:null}
         </div>
         
         

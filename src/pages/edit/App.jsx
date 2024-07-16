@@ -4,6 +4,7 @@ import Employee from "../employee/employee.jsx";
 import './App.css'
 import Navbar from './navbar.jsx'
 import { useState } from "react"
+import Validation from "../Validate.js";
 
 
 function App() {
@@ -11,37 +12,20 @@ function App() {
  
   let [employee] =data.filter(emp => emp.id == localStorage.getItem('id'));
 
- // console.log(employee)
+  const [change , setChange] = useState(employee); 
+  const [validate , setValidate] = useState({name:true,surname:true, position:true,email:true, Age:true , phone:true})
 
-  let [em , setEm] = useState(employee); 
 
- function setName(evn){
-  let Iname = evn.target.value
-   setEm(Iname);
-   employee.name = Iname;
-   
- }
- function setSurname(evn){
-  setEm(evn.target.value);
-  employee.surname = evn.target.value;
-}
-function setAge(evn){
-  setEm(evn.target.value);
-  employee.age = evn.target.value;
-}
-function setEmail(evn){
-  setEm(evn.target.value);
-  employee.email = evn.target.value;
-}
-function setPhone(evn){
-  setEm(evn.target.value);
-  employee.phone = evn.target.value;
-}
-function setPosition(evn){
-  setEm(evn.target.value);
-  employee.setPosition = evn.target.value;
+
+ function HandleChange(evn){
   
-}
+  const {id , value} =evn.target;
+  //console.log(evn.target)
+  //console.log([id])
+  setChange( previousChanges => ({...previousChanges , [id]: value }))
+
+  setValidate( previousChanges => ({...previousChanges , [id]: Validation(evn.target) }));
+ }
 
 function update(evn){
 //evn.preventDefault();
@@ -61,47 +45,57 @@ localStorage.setItem('employee',JSON.stringify(k))
 
 }
 
-  return (
-    <>
-        <Navbar/>
-        <div className="box">
-        <form action="employee.html" onSubmit={update} method="post">
-          <div>
-            <label htmlFor="name">Name</label>
-            <br />
-            <input type="text" id="name"  name="name" value={em.name} onChange={setName} required/>
+return (
+  <>  
+    <Navbar/>
+      <div className="box">
+      <form action="employees.html" onSubmit={update}>
+
+        <div>
+          <div className='names'>
+          <label htmlFor="name">Name</label>
+          <br />
+          <input type="text" id="name"  name="name" value={change.name} onChange={HandleChange} required/>
+          {!validate.name && <p style={{color:'red'}}>Name can not be empty or start with special character</p>} 
           </div>
           <div>
-            <label htmlFor="surname">Surname</label>
-            <br />
-            <input type="text" id="surname" value={em.surname} onChange={setSurname} required/>
+          <label htmlFor="surname">Surname</label>
+          <br />
+          <input type="text" id="surname"  value={change.surname} onChange={HandleChange} required/>
+          {!validate.surname && <p style={{color:'red'}}>Surname can not be empty or start with special character</p>}
           </div>
-          <div>
-            <label htmlFor="Age">Age</label>
-            <br />
-            <input type="Number" id="Age" value={em.Age} onChange={setAge}required/>
-          </div>
-          <div>
-            <label htmlFor="position">Position</label>
-            <br />
-            <input type="text" id="position" value={em.position} onChange={setPosition}required/>
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <br />
-            <input type="email" id="email" value={em.email} onChange={setEmail}required/>
-          </div>
-          <div>
-            <label htmlFor="phone">Phone</label>
-            <br />
-            <input type="Number" id="phone" value={em.phone} onChange={setPhone}required/>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
         </div>
-     
-    </>
-  )
+
+        <div>
+          <label htmlFor="Age">Age</label>
+          <br />
+          <input type="Number" id="Age" value={change.Age} onChange={HandleChange}required/>
+          {!validate.Age && <p style={{color:'red'}}>Age can not be empty and age can only be between 18 and 75</p>}
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <br />
+          <input type="email" id="email" value={change.email} onChange={HandleChange}required/>
+          {!validate.email && <p style={{color:'red'}}>Email can not be empty or start with special character</p>}
+        </div>
+        <div>
+          <label htmlFor="position">Position</label>
+          <br />
+          <input type="text" id="position" value={change.position} onChange={HandleChange}required/>
+          {!validate.position && <p style={{color:'red'}}>Position can not be empty or start with special character</p>}
+        </div>
+
+        <div>
+          <label htmlFor="phone">Phone</label>
+          <br />
+          <input type="Number" id="phone" value={change.phone} onChange={HandleChange}required/>
+          {!validate.phone && <p style={{color:'red'}}>phone number can not be empty or phone number must start with 0</p>}
+        </div>
+        <button className='btn btn-success' type="submit">Submit</button>
+      </form>
+      </div>
+  </>
+)
 }
 
 export default App

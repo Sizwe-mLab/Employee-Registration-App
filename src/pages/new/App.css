@@ -15,21 +15,26 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 350px;
+    width: 100%;
     padding: 2rem;
     background-color:rgb(64, 92, 36);
     border-radius: 15px;
 }
-
-.box>form> *{
-    display: inline-block;
+.box div{
+    width:100%;
+    display: block !important;
+}
+.box>form>div> *{
+    /* display: inline-block; */
+    width: 100%;
+    justify-content: left;
 }
 
 .box>form input{
     color: black;
     border-radius: 14px;
     margin: 5px 0 20px 0;
-    width: 200px;
+    width: 100%;
     padding: .5rem 1rem;
     border: none;
 }

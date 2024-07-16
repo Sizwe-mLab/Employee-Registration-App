@@ -6,20 +6,13 @@ import { getData, uploadData,mapData } from '../Data/employees.js'
 
 function App() {
   
-  if(JSON.parse(localStorage.getItem('Workers')) ==null || JSON.parse(localStorage.getItem('Workers'))[0] == undefined)
-  {
-    //console.log([localStorage.getItem('Workers')].length)
-    uploadData();
-    //console.log('data reset')
-  }
-  
-  let data = getData(Worker);
+
   //console.log([localStorage.getItem('Workers')] , 'after get work')
 
   return (
     <>
     <Navbar/>
-    <Employees  emp = {data.map(e=>e)} />
+    <Employees/>
      
     </>
   )
