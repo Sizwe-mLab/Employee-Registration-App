@@ -46,11 +46,11 @@ export default function Employees(){
         <div className='top'>
         <h1>Employees</h1>
         <Search/>
-        { em.length == '0' ?<button type='submit' onClick={defaultData}>Generate demo employees</button>:null}
+        {  em == null ?<button type='submit' onClick={defaultData}>Generate demo employees</button>:null}
         </div>
         
         
-
+        {em != null&&
         <div className='emps'>
         
         {
@@ -73,11 +73,13 @@ export default function Employees(){
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     
                     </div>
-
+        
                  </div> )      
-        }
+}
+
 
         </div>
+}
         </>
     )
 
