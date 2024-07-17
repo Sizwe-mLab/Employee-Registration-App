@@ -37,18 +37,14 @@ export default function Employee(){
 
                     <div className='forms'>
                     { e.name?
-                      <form action="edit.html" onSubmit={setSubmit} id={e.id}>
+                      <form action="/employees/employee/edit" onSubmit={setSubmit} id={e.id}>
                       <button type='edit' onClick={()=> editSet(e.id)} >Edit</button> 
                      </form>
                      : null }
-                     <form action="employees.html">
+                     <form action="/employees">
                         <button>Back</button>
                      </form>
-                     { e.name?
-                        <form action="">  
-                        <button onClick={() => deleteHandle(e.id)} type='delete' >Delete</button>
-                        </form> 
-                        : null }
+
                     </div>
                     
                  </div> )     
