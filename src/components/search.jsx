@@ -1,4 +1,4 @@
-import { getData } from '../Data/employees';
+import { getData, getOneEmployee } from '../Data/employees';
 import '../style/search.css'
 import { useState } from 'react'
 export default function Search(){
@@ -8,16 +8,19 @@ export default function Search(){
 
     let nameHandle = evn => setName(evn.target.value);
 
-    let submitHandle = (e)=>{ searchHandle() }
+    let submitHandle = (e)=>{ 
+        searchHandle()  
+        }
 
     let selectHandle = (e)=>{
+        
         setOptions(e.target.value)
     }
 
     let employee ;
 
-    let searchHandle = (name)=>{
-
+    let searchHandle = (name = name)=>{
+ 
     if(options === 'id'){
     employee = employees.filter(e => e.id == name);
     }
@@ -44,21 +47,21 @@ export default function Search(){
         
 
     }
-        //console.log(employee);
+        console.log(employee);
         //console.log('employee is passed to localStorage');
-        //console.log(getOneEmployee())  
+        console.log(getOneEmployee())  
     }
     
 
     return (<>
-    <form action="/employees/employee" onSubmit={submitHandle} >
+    <form action="/employees/employee" onSubmit={submitHandle}>
     <select name="options" id="option" onChange={selectHandle} defaultChecked = 'name'>
-        <option value='name'>Name</option>
+        <option value='name'  selected >Name</option>
         <option value= 'position'>Position</option>
         <option value='id' >ID</option>
     </select>
     <div>
-    <span><i className='bx bx-search'></i></span>
+    <span><i class='bx bx-search'></i></span>
     <input type="text" placeholder="Search by Name" value={name} onChange={nameHandle} required/>
     </div>
     <button onClick={()=>searchHandle(name) }>Search</button>

@@ -46,7 +46,7 @@ export default function Employees(){
         <div className='top'>
         <h1>Employees</h1>
         <Search/>
-        {  em == null ?<button type='submit' onClick={defaultData}>Generate demo employees</button>:null}
+        {  em == null || em.length == 0?<button type='submit' onClick={defaultData}>Generate demo employees</button>:null}
         </div>
         
         

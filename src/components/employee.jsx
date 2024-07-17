@@ -3,8 +3,9 @@ import { getData ,getOneEmployee,mapData} from "../Data/employees";
 import '../style/employee.css'
 
 export default function Employee(){
-
-    let [em ,setEmp ] = useState(getOneEmployee());
+    
+    let [em ,setEmp ] = useState(getOneEmployee(localStorage.getItem('id')));
+    console.log(em);
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
