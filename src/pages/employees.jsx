@@ -1,5 +1,4 @@
 import '../style/employees.css'
-import Edit from '../components/Edit';
 import { useState } from 'react';
 import { getData, getOneEmployee, mapData,uploadData } from '../Data/employees';
 import Search from '../components/search';

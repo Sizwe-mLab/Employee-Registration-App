@@ -90,7 +90,7 @@ return (
         <div>
           <label htmlFor="phone">Phone</label>
           <br />
-          <input type="Number" id="phone" value={change.phone} onChange={HandleChange}required/>
+          <input type="tel" id="phone" value={change.phone} onChange={HandleChange}required/>
           {!validate.phone && <p style={{color:'red'}}>phone number can not be empty or phone number must start with 0</p>}
         </div>
        {confirmValid() ? <button className='btn btn-success' type="submit" >Submit</button>: <button className='btn btn-success' type="submit" disabled>Submit</button>}
