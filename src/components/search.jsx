@@ -3,7 +3,7 @@ import '../style/search.css'
 import { useState } from 'react'
 export default function Search(){
     let [name, setName] = useState();
-    let [options, setOptions] = useState();
+    let [options, setOptions] = useState('name');
     let employees = getData();
 
     let nameHandle = evn => setName(evn.target.value);
@@ -62,7 +62,7 @@ export default function Search(){
     </select>
     <div>
     <span><i class='bx bx-search'></i></span>
-    <input type="text" placeholder="Search by Name" value={name} onChange={nameHandle} required/>
+    <input type="text" placeholder={`Search by ${options}`} value={name} onChange={nameHandle} required/>
     </div>
     <button onClick={()=>searchHandle(name) }>Search</button>
     </form>

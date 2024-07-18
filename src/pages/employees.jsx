@@ -12,11 +12,6 @@ export default function Employees(){
        localStorage.setItem('id',`${id}`)
     }
 
-    let setSubmit = (evn)=>{
-        //console.log(evn.target)
-    }
-  
-
     let deleteHandle = (id)=>{
         
        setEmp(oldEmp => oldEmp.filter(e => e.id !== id))
@@ -55,23 +50,26 @@ export default function Employees(){
         {
                 em.map(e =>
                 <div className='emp'  key={e.id} >
-
-                    <h3>{e.name} {e.surname}</h3> 
+                    <h3>{e.name} {e.surname}</h3>
+                    <div className="details">
+                     
                     <span>ID: {e.id}</span>
                     <p>Position: {e.position}</p>
-                
+                    </div>
+                    
                     <div className='forms'>
-                      <form action="/employees/employee/edit" onSubmit={setSubmit} id={e.id}>
+                      <form action="/employees/employee/edit" id={e.id}>
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
                     <form action="/employees/employee" >
-                        <button onClick={()=>viewHandle(e.id) }className=' btn btn-success'>View</button>
+                        <button onClick={()=>viewHandle(e.id) }className=' btn-successful'>View</button>
                     </form>
                                
                         <button onClick={() => deleteHandle(e.id)} type='delete'>Delete</button>
                     
                     </div>
+               
         
                  </div> )      
 }

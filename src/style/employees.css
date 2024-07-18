@@ -21,12 +21,15 @@
     box-shadow: 0px 0px 5px 5px var(--Text-color);
     padding: 1rem;
     background-color: var(--Secondary-color);
+    display: grid;
+    
     
 }
 
 .emps>.emp>h3{
     color: var(--Accent-color);
     border-bottom:2px solid var(--Text-color);
+    height: 80px;
 }
 
 button{
@@ -37,6 +40,9 @@ button{
     border-radius: 15px !important;
     transition: .4s;
     
+}
+button:hover{
+    box-shadow: 0px 0px 5px 2px var(--Accent-color);
 }
 .emp a{
     padding: .2rem 1rem;
@@ -50,13 +56,21 @@ button{
 button[type = 'Delete']{
     background-color: red;
 }
-button:hover{
-    box-shadow: 0px 0px 5px 3px;
-    padding:.3rem 1.2rem ;
+button[type = 'submit']{
+    background-color: var(--Secondary-color);
+    border: 1px solid var(--Accent-color);
+    transition: .4s;
+}
+button[type = 'submit']:hover{
+    box-shadow: 0px 0px 5px 2px var(--Accent-color);
+    border: 1px solid var(--Accent-color);
+    font-size: 16px;
+    font-weight: 600;
 }
 .forms{
     display: flex;
     justify-content: space-between;
+    
 }
 .top{
     display: flex;
@@ -97,4 +111,12 @@ button:hover{
     color: var(--Secondary-color);
     font-weight: 500;
     
+}
+
+button{
+    height: 30px;
+    padding: 0;
+    width: 60px;
+    text-align: center;
+   
 }

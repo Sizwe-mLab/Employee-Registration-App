@@ -44,11 +44,11 @@ button{
     border: none;
    
 }
-button:hover{
+/* button:hover{
     background-color: var(--Secondary-color);
     box-shadow: 0px 0px 4px 4px var(--Accent-color);
     border: none;
-}
+} */
 button[type ='delete']{
     background-color: red;
     border: none;
