@@ -9,18 +9,7 @@ export default function Employee(){
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
-    let setSubmit = (evn)=>{
-        //console.log(evn.target)
-    }
-  
 
-    let deleteHandle = (id)=>{
-        
-       setEmp(oldEmp => oldEmp.filter(e => e.id !== id))
-
-      mapData(getData().filter(e => e.id !== id));
-        
-    }
     return (
         <>
         <div className='employee'>
@@ -38,7 +27,7 @@ export default function Employee(){
 
                     <div className='forms'>
                     { e.name?
-                      <form action="/employees/employee/edit" onSubmit={setSubmit} id={e.id}>
+                      <form action="/employees/employee/edit"  id={e.id}>
                       <button type='edit' onClick={()=> editSet(e.id)} >Edit</button> 
                      </form>
                      : null }
