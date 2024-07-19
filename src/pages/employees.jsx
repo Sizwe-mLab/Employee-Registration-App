@@ -20,9 +20,11 @@ export default function Employees(){
         
     }
     let viewHandle = (id)=>{
-
+        // event.preventDefault();
+        console.log(id)
+        localStorage.setItem('id',`${id}`)
         let employee = em.filter(e => e.id == id);
-
+        
         localStorage.setItem('employee' , JSON.stringify([...employee]));
 
     }
@@ -58,11 +60,11 @@ export default function Employees(){
                     </div>
                     
                     <div className='forms'>
-                      <form action="/employees/employee/edit" id={e.id}>
+                      <form action={`/employees/${e.id}/edit`} id={e.id}>
                         <button type='submit' onClick={()=> editSet(e.id)}>Edit</button>
                      </form>
 
-                    <form action="/employees/employee" >
+                    <form action={`/employees/${e.id}`}>
                         <button onClick={()=>viewHandle(e.id) }className=' btn-successful'>View</button>
                     </form>
                                

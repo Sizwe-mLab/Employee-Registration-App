@@ -51,13 +51,13 @@ return (
   <>  
     <Navbar/>
       <div className="box">
-      <form action="/employees" onSubmit={update}>
+      <form action="/employees" onSubmit={update} method="get">
 
         <div>
           <div className='names'>
           <label htmlFor="name">Name</label>
           <br />
-          <input type="text" id="name"  name="name" value={change.name} onChange={HandleChange} required/>
+          <input type="text" id="name"   value={change.name} onChange={HandleChange} required/>
           {!validate.name && <p style={{color:'red'}}>Name can not be empty or start with special character</p>} 
           </div>
           <div>

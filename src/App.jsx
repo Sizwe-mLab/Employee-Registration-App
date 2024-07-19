@@ -10,6 +10,7 @@ import Employee from './components/employee'
 
 //routs
 import Edit from './components/Edit.jsx'
+import { useState } from 'react'
 
 
 
@@ -17,15 +18,18 @@ import Edit from './components/Edit.jsx'
 
 function App() {
 
+  let [id , setId] = useState(localStorage.getItem('id'))
+  console.log(id)
   return (
+    
     <div className='root'>
     <BrowserRouter>
     <Routes>
     <Route   path='/'   element={<Home/>} />  
     <Route   path='/employees'   element={<Employees/>} /> 
     <Route   path='/employees/add'   element={<Add/>} /> 
-    <Route   path='/employees/employee'   element={<Employee/>} /> 
-    <Route   path='/employees/employee/edit'   element={<Edit/>} /> 
+    <Route   path={`/employees/${id}`}   element={<Employee/>} /> 
+    <Route   path={`/employees/${id}/edit`}   element={<Edit/>} /> 
 
     </Routes>
     </BrowserRouter>  

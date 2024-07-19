@@ -4,7 +4,7 @@ import '../style/employee.css'
 
 export default function Employee(){
     
-    let [em ,setEmp ] = useState(getOneEmployee(localStorage.getItem('id')));
+    let [em ,setEmp ] = useState(getOneEmployee(localStorage.getItem('employee')));
     console.log(em);
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
@@ -27,7 +27,7 @@ export default function Employee(){
 
                     <div className='forms'>
                     { e.name?
-                      <form action="/employees/employee/edit"  id={e.id}>
+                      <form action={`/employees/${e.id}/edit`}  id={e.id}>
                       <button type='edit' onClick={()=> editSet(e.id)} >Edit</button> 
                      </form>
                      : null }
