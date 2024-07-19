@@ -78,7 +78,7 @@ return (
           <label htmlFor="email">Email</label>
           <br />
           <input type="email" id="email" value={change.email} onChange={HandleChange}required/>
-          {!validate.email && <p style={{color:'red'}}>Email can not be empty or start with special character</p>}
+          {!validate.email && <p style={{color:'red'}}>Email can not be empty</p>}
         </div>
         <div>
           <label htmlFor="position">Position</label>

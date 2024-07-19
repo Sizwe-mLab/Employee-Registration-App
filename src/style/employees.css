@@ -63,7 +63,7 @@ button[type = 'submit']{
 }
 button[type = 'submit']:hover{
     box-shadow: 0px 0px 5px 2px var(--Accent-color);
-    border: 1px solid var(--Accent-color);
+    border: 1px solid var(--Primary-color);
     font-size: 16px;
     font-weight: 600;
 }
@@ -103,6 +103,13 @@ button[type = 'submit']:hover{
 .top>form>div>span>i{
  font-size: 1.5rem;
 }
+.top>button{
+   
+    background-color: var(--Accent-color);
+    color:var(--Text-color);
+    transition: .4s !important;
+}
+
 .top>form>div>input{
     border-radius: 28px;
     padding: .4rem 1rem;
