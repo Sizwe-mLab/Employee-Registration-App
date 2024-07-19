@@ -1,16 +1,17 @@
 
 import './style/App.css'
 import {BrowserRouter, Route,Routes}from 'react-router-dom'
-
+import { useState } from 'react'
 //pages
 import Employees from './pages/employees.jsx'
 import Add from './pages/Add.jsx'
 import Home from './pages/home.jsx'
+
+
+//hidden page
+import Edit from './components/Edit.jsx'
 import Employee from './components/employee'
 
-//routs
-import Edit from './components/Edit.jsx'
-import { useState } from 'react'
 
 
 
@@ -29,7 +30,8 @@ function App() {
     <Route   path='/employees'   element={<Employees/>} /> 
     <Route   path='/employees/add'   element={<Add/>} /> 
     <Route   path={`/employees/${id}`}   element={<Employee/>} /> 
-    <Route   path={`/employees/${id}/edit`}   element={<Edit/>} /> 
+    <Route   path={`/employees/${id}/edit`}   element={<Edit/>} />
+    <Route   path={`/employees/employee`}   element={<Employee/>} />  
 
     </Routes>
     </BrowserRouter>  

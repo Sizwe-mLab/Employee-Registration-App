@@ -8,6 +8,7 @@ import Navbar from '../components/navbar';
 export default function Employees(){
     
     let [em ,setEmp ] = useState(getData());
+    let [id , seId] = useState()
     let editSet = (id)=>{
        localStorage.setItem('id',`${id}`)
     }
@@ -32,7 +33,7 @@ export default function Employees(){
 
     function defaultData(){
         uploadData();
-        setEmp(getData(Worker));
+        setEmp(getData('Worker'));
         
       }
 
