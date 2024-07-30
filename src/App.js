@@ -3,6 +3,7 @@ import './App.css';
 import React, { useState } from 'react';
 import EmployeeList from './components/EmployeeList';
 import EmployeeForm from './components/EmployeeForm';
+import EmployeeSearch from './components/EmployeeSearch';
 
 
 
@@ -10,16 +11,11 @@ import EmployeeForm from './components/EmployeeForm';
 function App() {
   const [employees, setEmployees] = useState([]);
   const [employeeToEdit, setEmployeeToEdit] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   
-
-  
-
-  
-  
-
   const addEmployee = (employee) => {
     setEmployees([...employees, employee ]);
-    console.log(employee)
+    //console.log(employee)
     
   };
 
@@ -34,13 +30,23 @@ function App() {
 
   const deleteEmployee = (id) => {
     setEmployees(employees.filter(employee => employee.id !== id));
-    console.log(employees, id);
+    
   };  
 
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
 
+  const filteredEmployees = employees.filter(employee => {
+    const employeeId = String(employee.Id).toLowerCase();
+    return employeeId.includes(searchTerm.toLowerCase());
+     
+    
+  }
   
-   
+  
+  );
 
   return (
     <div className="App">
@@ -50,8 +56,11 @@ function App() {
       updateEmployee={updateEmployee}
       employeeToEdit={employeeToEdit}
       />
+
+      <EmployeeSearch onSearch={handleSearch} />
+
       <EmployeeList 
-       employees={employees}
+       employees={filteredEmployees}
        editEmployee={editEmployee}
        deleteEmployee={deleteEmployee}
       />

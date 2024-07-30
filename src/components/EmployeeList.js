@@ -30,6 +30,7 @@ const EmployeeList = ({ employees, editEmployee, deleteEmployee }) => {
                             <p>Email: {employee.email}</p>
                             <p>Phone: {employee.phone}</p>
                             <p>Position: {employee.position}</p>
+                            <p>Id: {employee.Id}</p>
                         </div>
                         <div className="edit-delete-btn">
                         

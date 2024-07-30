@@ -10,12 +10,6 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
     position: '',
     image: '', 
 
-    
-
-
-
-    
-    
   });
 
   useEffect(() => {
@@ -57,14 +51,15 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
       <input type="text" name="phone" value={employee.phone} onChange={handleChange} placeholder="Phone" required />
       <input type="text" name="position" value={employee.position} onChange={handleChange} placeholder="position" required />
       <input type="text" name="image" value={employee.image} onChange={handleChange} placeholder="Image URL" required />
+      <input type="number" name="id" value={employee.id} onChange={handleChange} placeholder="Id" />
 
       
         
 
       
-     <div class="search-container">
+      <div class="search-container">
     <form action="/search">
-        <input type="text" placeholder="Search.." name="search"/>
+        
         <div className='Search-button'>
         <button className="Search"onClick={() => (employee)}>Search</button>
         </div>
