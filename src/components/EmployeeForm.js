@@ -3,23 +3,42 @@ import './Employeeform.css';
 
 const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
   const [employee, setEmployee] = useState({
-    id: '',
+    // id: '',
     name: '',
-    email: '',
-    phone: '',
-    position: '',
+    age: '',
+    surname: '',
+    idnumber: '',
+    role: '',
     image: '', 
   });
 
   useEffect(() => {
     if (employeeToEdit) {
-      setEmployee(employeeToEdit);
+      setEmployee({
+        // id: employeeToEdit.id || '', 
+        name: employeeToEdit.name || '',
+        age: employeeToEdit.age || '',
+        surname: employeeToEdit.surname || '',
+        idnumber: employeeToEdit.idnumber || '',
+        role: employeeToEdit.role || '',
+        image: employeeToEdit.image || '',
+      });
+    } else {
+      setEmployee({
+        id: '',
+        name: '',
+        age: '',
+        surname: '',
+        idnumber: '',
+        role: '',
+        image: '',
+      });
     }
   }, [employeeToEdit]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEmployee({ ...employee, [name]: value });
+    setEmployee((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -29,12 +48,15 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
     } else {
       addEmployee(employee);
     }
+
+ 
     setEmployee({
-      id: '',
+      // id: '',
       name: '',
-      email: '',
-      phone: '',
-      position: '',
+      age: '',
+      surname: '',
+      idnumber: '',
+      role: '',
       image: '',
     });
   };
@@ -43,18 +65,61 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
     <form onSubmit={handleSubmit} className="employee-form">
       <h2>{employeeToEdit ? 'Edit Employee' : 'Add Employee'}</h2>
       <div className="input-items">
-      <input type="text" name="name" value={employee.name} onChange={handleChange} placeholder="Name" required />
-      <input type="email" name="email" value={employee.email} onChange={handleChange} placeholder="Email" required />
-      <input type="text" name="phone" value={employee.phone} onChange={handleChange} placeholder="Phone" required />
-      <input type="text" name="position" value={employee.position} onChange={handleChange} placeholder="position" required />
-      <input type="text" name="image" value={employee.image} onChange={handleChange} placeholder="Image URL" required />
+        <input 
+          type="text" 
+          name="name" 
+          value={employee.name} 
+          onChange={handleChange} 
+          placeholder="Name" 
+          required 
+        />
+        <input 
+          type="number" 
+          name="age" 
+          value={employee.age} 
+          onChange={handleChange} 
+          placeholder="Age" 
+          required 
+        />
+        <input 
+          type="text" 
+          name="surname" 
+          value={employee.surname} 
+          onChange={handleChange} 
+          placeholder="Surname" 
+          required 
+        />
+        <input 
+          type="text" 
+          name="idnumber" 
+          value={employee.idnumber} 
+          onChange={handleChange} 
+          placeholder="ID Number" 
+          required 
+        />
+        <input 
+          type="text" 
+          name="role" 
+          value={employee.role} 
+          onChange={handleChange} 
+          placeholder="Role" 
+          required 
+        />
+        <input 
+          type="text" 
+          name="image" 
+          value={employee.image} 
+          onChange={handleChange} 
+          placeholder="Image URL" 
+          required 
+        />
       </div>
 
-      <button type="submit">{employeeToEdit ? 'Update Employee' : 'Add Employee'}</button>
-      </form>
+      <button type="submit">
+        {employeeToEdit ? 'Update Employee' : 'Add Employee'}
+      </button>
+    </form>
   );
 };
 
 export default EmployeeForm;
-
-                   
