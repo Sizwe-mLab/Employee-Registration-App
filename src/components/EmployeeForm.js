@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { db } from './FirebaseConfig'; 
+import { collection, addDoc } from 'firebase/firestore';
 import './Employeeform.css';
 
-const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
+const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
   const [employee, setEmployee] = useState({
-    // id: '',
     name: '',
     age: '',
     surname: '',
@@ -15,7 +16,6 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
   useEffect(() => {
     if (employeeToEdit) {
       setEmployee({
-        // id: employeeToEdit.id || '', 
         name: employeeToEdit.name || '',
         age: employeeToEdit.age || '',
         surname: employeeToEdit.surname || '',
@@ -25,7 +25,6 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
       });
     } else {
       setEmployee({
-        id: '',
         name: '',
         age: '',
         surname: '',
@@ -41,17 +40,25 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
     setEmployee((prev) => ({ ...prev, [name]: value }));
   };
 
+  const addEmployee = async (newEmployee) => {
+    try {
+      const docRef = await addDoc(collection(db, 'employees'), newEmployee);
+      console.log("Employee added with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding employee: ", error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (employeeToEdit) {
-      updateEmployee(employee);
+      updateEmployee(employee); 
     } else {
       addEmployee(employee);
     }
 
- 
+  
     setEmployee({
-      // id: '',
       name: '',
       age: '',
       surname: '',
@@ -123,3 +130,4 @@ const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
 };
 
 export default EmployeeForm;
+     

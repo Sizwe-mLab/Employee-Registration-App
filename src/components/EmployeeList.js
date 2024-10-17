@@ -40,13 +40,13 @@ const EmployeeList = ({ editEmployee, deleteEmployee }) => {
                         <div>
                             <h3>{employee.name} {employee.surname}</h3>
                             <p>Surname: {employee.surname}</p>
-                            <p>IDNumber: {employee.idnumber}</p>
+                            <p>IDNumber: {employee.id}</p>
                             <p>Role: {employee.role}</p>
                             <p>Age: {employee.age}</p>
                         </div>
                         <div className="edit-delete-btn">
                             <button className="edit-btn" onClick={() => editEmployee(employee)}>Edit</button>
-                            <button className="delete-btn" onClick={() => deleteEmployee(employee.idnumber)}>Delete</button>
+                            <button className="delete-btn" onClick={() => deleteEmployee(employee.id)}>Delete</button>
                         </div>
                     </div>
                 ))
