@@ -1,43 +1,89 @@
+.employee-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-.employee-form {
-    background-color: #0B525B;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    margin: 20px auto;
-  
-  }
-  
-  .employee-form h2 {
-    text-align: center;
-    color: black;
-    margin-bottom: 20px;
-    font-size: 40px;
-  }
-  
-  .employee-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid whitesmoke;
-    border-radius: 20px;
-    justify-content: center;
-  }
-  
-  .employee-form button {
-    width: 90%;
-    height: 40px;
-    padding: 10px;
-    background-color: #656D4A;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .employee-form button:hover {
-    background-color: #333D29;
-  }
-  
+.form-layout {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.image-upload-container {
+  margin-right: 50px; 
+}
+
+.image-placeholder {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.input-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid black; 
+  outline: none;
+  font-size: 16px;
+}
+
+input::placeholder {
+  color: #ccc; 
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: black;
+}
+
+.view-staff-button {
+  margin-bottom: 20px;
+}
+
+
+
+.remove-button {
+  color: black;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  margin-top: 220px;
+  right: 5px;
+}
+
+.upload-button {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.image-upload-container {
+  position: relative;
+}
+
