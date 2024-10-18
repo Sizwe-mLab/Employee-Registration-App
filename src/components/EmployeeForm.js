@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { db } from './FirebaseConfig'; 
-import { collection, addDoc } from 'firebase/firestore';
-import './Employeeform.css';
+import React, { useState, useEffect } from "react";
+import { db } from "./FirebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload, faTrash } from "@fortawesome/free-solid-svg-icons";
+import "./Employeeform.css";
 
 const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
   const [employee, setEmployee] = useState({
-    name: '',
-    age: '',
-    surname: '',
-    idnumber: '',
-    role: '',
-    image: '', 
+    name: "",
+    age: "",
+    surname: "",
+    idnumber: "",
+    role: "",
+    image: "",
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (employeeToEdit) {
       setEmployee({
-        name: employeeToEdit.name || '',
-        age: employeeToEdit.age || '',
-        surname: employeeToEdit.surname || '',
-        idnumber: employeeToEdit.idnumber || '',
-        role: employeeToEdit.role || '',
-        image: employeeToEdit.image || '',
-      });
-    } else {
-      setEmployee({
-        name: '',
-        age: '',
-        surname: '',
-        idnumber: '',
-        role: '',
-        image: '',
+        name: employeeToEdit.name || "",
+        age: employeeToEdit.age || "",
+        surname: employeeToEdit.surname || "",
+        idnumber: employeeToEdit.idnumber || "",
+        role: employeeToEdit.role || "",
+        image: employeeToEdit.image || "",
       });
     }
   }, [employeeToEdit]);
@@ -42,7 +38,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
 
   const addEmployee = async (newEmployee) => {
     try {
-      const docRef = await addDoc(collection(db, 'employees'), newEmployee);
+      const docRef = await addDoc(collection(db, "employees"), newEmployee);
       console.log("Employee added with ID: ", docRef.id);
     } catch (error) {
       console.error("Error adding employee: ", error);
@@ -52,82 +48,138 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (employeeToEdit) {
-      updateEmployee(employee); 
+      updateEmployee(employee);
     } else {
       addEmployee(employee);
     }
 
-  
     setEmployee({
-      name: '',
-      age: '',
-      surname: '',
-      idnumber: '',
-      role: '',
-      image: '',
+      name: "",
+      age: "",
+      surname: "",
+      idnumber: "",
+      role: "",
+      image: "",
     });
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="employee-form">
-      <h2>{employeeToEdit ? 'Edit Employee' : 'Add Employee'}</h2>
-      <div className="input-items">
-        <input 
-          type="text" 
-          name="name" 
-          value={employee.name} 
-          onChange={handleChange} 
-          placeholder="Name" 
-          required 
-        />
-        <input 
-          type="number" 
-          name="age" 
-          value={employee.age} 
-          onChange={handleChange} 
-          placeholder="Age" 
-          required 
-        />
-        <input 
-          type="text" 
-          name="surname" 
-          value={employee.surname} 
-          onChange={handleChange} 
-          placeholder="Surname" 
-          required 
-        />
-        <input 
-          type="text" 
-          name="idnumber" 
-          value={employee.idnumber} 
-          onChange={handleChange} 
-          placeholder="ID Number" 
-          required 
-        />
-        <input 
-          type="text" 
-          name="role" 
-          value={employee.role} 
-          onChange={handleChange} 
-          placeholder="Role" 
-          required 
-        />
-        <input 
-          type="text" 
-          name="image" 
-          value={employee.image} 
-          onChange={handleChange} 
-          placeholder="Image URL" 
-          required 
-        />
-      </div>
+  const handleEmployeeList = () => {
+    navigate("/employeelist");
+  };
 
-      <button type="submit">
-        {employeeToEdit ? 'Update Employee' : 'Add Employee'}
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEmployee((prev) => ({ ...prev, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDeleteImage = () => {
+    setEmployee((prev) => ({ ...prev, image: "" }));
+  };
+
+  return (
+    <div className="employee-form-container">
+      <button
+        type="button"
+        onClick={handleEmployeeList}
+        className="view-staff-button"
+      >
+        View Staff
       </button>
-    </form>
+      <form onSubmit={handleSubmit} className="employee-form">
+        <h2>{employeeToEdit ? "Edit Employee" : "Add Employee"}</h2>
+
+        <div className="form-layout">
+          <div className="image-upload-container">
+            <div className="image-placeholder">
+              {employee.image ? (
+                <>
+                  <img src={employee.image} alt="Employee" />
+                  <button
+                    type="button"
+                    onClick={handleDeleteImage}
+                    className="remove-button"
+                    aria-label="Remove image"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                    <span>Remove</span>
+                  </button>
+                </>
+              ) : (
+                <span>Upload</span>
+              )}
+            </div>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              style={{ display: "none" }}
+              id="file-upload"
+            />
+            <label
+              htmlFor="file-upload"
+              className="upload-button"
+              aria-label="Upload image"
+            >
+              <FontAwesomeIcon icon={faUpload} />
+              <span>Upload</span>
+            </label>
+          </div>
+
+          <div className="input-items">
+            <input
+              type="text"
+              name="name"
+              value={employee.name}
+              onChange={handleChange}
+              placeholder="__Name______________________ "
+              required
+            />
+            <input
+              type="number"
+              name="age"
+              value={employee.age}
+              onChange={handleChange}
+              placeholder="__Age_______________________ "
+              required
+            />
+            <input
+              type="text"
+              name="surname"
+              value={employee.surname}
+              onChange={handleChange}
+              placeholder="__Surname______________________ "
+              required
+            />
+            <input
+              type="text"
+              name="idnumber"
+              value={employee.idnumber}
+              onChange={handleChange}
+              placeholder="__idNumber_______________________ "
+              required
+            />
+            <input
+              type="text"
+              name="role"
+              value={employee.role}
+              onChange={handleChange}
+              placeholder="__Role_______________________ "
+              required
+            />
+          </div>
+        </div>
+
+        <button type="submit">
+          {employeeToEdit ? "Update Employee" : "Add Employee"}
+        </button>
+      </form>
+    </div>
   );
 };
 
 export default EmployeeForm;
-     

@@ -1,99 +1,53 @@
-
 .employee-list {
-    width: 60%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #006466;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .employee-list h2 {
-    text-align: center;
-    color: black;
-    margin-bottom: 20px;
-    font-size: 40px;
-  }
-  
-  .employee-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .employee-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .employee-list li:last-child {
-    border-bottom: none;
-  }
-  
-  .employee-list li img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .employee-list li .employee-info {
-    flex: 1;
-  }
-  
-  .employee-list li .employee-info p {
-    margin: 0;
-    padding: 0;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 16px;
+  padding: 20px; 
+}
 
-  .edit-button, .delete-button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-size: 16px;
-  }
-  
-  .edit-btn:hover {
-    background-color: #283618;
-    transform: scale(1.05);
-  }
+.employee-card {
+  border: 1px solid #ccc; 
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding: 10px; 
+  text-align: center;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s;
+ 
+}
 
-  .edit-btn{
-    width: 80px;
-    height: 40px;
-    margin-right: 20px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    background-color: #606c38;
-    
-  }
+.employee-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
 
-  .delete-btn{
-    width: 80px;
-    height: 40px;
-    margin-left: 20px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    background-color:#656D4A;
-  }
+.employee-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 10px; 
+}
 
-  .delete-btn:hover {
-    background-color: #344E41;
-    transform: scale(1.05);
-  }
+.edit-delete-btn {
+  display: flex; 
+  justify-content: space-between; 
+  width: 100%;
+}
 
-  .input-items{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-right: 20px;
-  }
-  
+.edit-btn, .delete-btn {
+  padding: 8px 12px;
+  margin-top: 10px; 
+  cursor: pointer;
+  border: none;
+  border-radius: 5px; 
+  background-color: #a7834d; 
+  color: white;
+}
+
+.delete-btn {
+  background-color: #a7834d; 
+}
+
+

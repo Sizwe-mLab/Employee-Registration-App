@@ -29,8 +29,12 @@ const EmployeeList = ({ editEmployee, deleteEmployee }) => {
     }
 
     return (
-        <div className="employee-list">
+        <div>
             <h2>Employee List</h2>
+
+      
+        <div className="employee-list">
+            
             {employees.length === 0 ? (
                 <p>No employees to display</p>
             ) : (
@@ -39,7 +43,6 @@ const EmployeeList = ({ editEmployee, deleteEmployee }) => {
                         <img src={employee.image} alt={employee.name} />
                         <div>
                             <h3>{employee.name} {employee.surname}</h3>
-                            <p>Surname: {employee.surname}</p>
                             <p>IDNumber: {employee.id}</p>
                             <p>Role: {employee.role}</p>
                             <p>Age: {employee.age}</p>
@@ -51,6 +54,7 @@ const EmployeeList = ({ editEmployee, deleteEmployee }) => {
                     </div>
                 ))
             )}
+        </div>
         </div>
     );
 };
