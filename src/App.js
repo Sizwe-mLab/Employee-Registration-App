@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeForm from "./components/EmployeeForm";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router, Routes, and Route
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [employees, setEmployees] = useState([]);
