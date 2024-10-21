@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [employees, setEmployees] = useState([]);
   const [employeeToEdit, setEmployeeToEdit] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null); // Track logged-in user
 
   const addEmployee = (employee) => {
     setEmployees([...employees, employee]);
@@ -35,22 +36,20 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/employeelist" element={
-              <EmployeeList
-                employees={employees}
-                editEmployee={editEmployee}
-                deleteEmployee={deleteEmployee}
-              />
-            }
-          />
+            <EmployeeList
+              employees={employees}
+              editEmployee={editEmployee}
+              deleteEmployee={deleteEmployee}
+            />
+          } />
           <Route path="/" element={
-              <EmployeeForm
-                addEmployee={addEmployee}
-                updateEmployee={updateEmployee}
-                employeeToEdit={employeeToEdit}
-              />
-            }
-          />
-          <Route path="/login" element={<Login />} />
+            <EmployeeForm
+              addEmployee={addEmployee}
+              updateEmployee={updateEmployee}
+              employeeToEdit={employeeToEdit}
+            />
+          } />
+          <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} /> {/* Pass setLoggedInUser */}
         </Routes>
       </div>
     </Router>

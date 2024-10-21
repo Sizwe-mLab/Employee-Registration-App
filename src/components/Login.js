@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from './FirebaseConfig';
-import bcrypt from 'bcryptjs';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setLoggedInUser }) => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate(); 
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-           
             const employeesCollection = collection(db, 'employees');
             const q = query(employeesCollection, where('id', '==', id));
             const employeeSnapshot = await getDocs(q);
@@ -20,17 +20,17 @@ const Login = ({ setLoggedInUser }) => {
                 const employeeDoc = employeeSnapshot.docs[0];
                 const employeeData = employeeDoc.data();
 
-              
-                const passwordMatch = bcrypt.compareSync(password, employeeData.password);
-
-                if (passwordMatch) {
+                if (password === employeeData.password) {
                     if (employeeData.role === 'admin') {
-                       
                         setLoggedInUser({
                             id: employeeDoc.id,
                             ...employeeData,
                         });
                         console.log('Logged in as admin:', employeeData.name);
+
+                        
+                        console.log('Navigating to employeelist');
+                        navigate('/employeelist');
                     } else {
                         setError('Access denied. Only admins can log in.');
                     }
