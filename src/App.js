@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeForm from "./components/EmployeeForm";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
               />
             }
           />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>
