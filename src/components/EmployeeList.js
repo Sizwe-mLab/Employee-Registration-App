@@ -72,7 +72,6 @@ const EmployeeList = ({ editEmployee }) => {
     };
     
 
-
     return (
         <div>
             <h2>Employee List</h2>
@@ -81,47 +80,47 @@ const EmployeeList = ({ editEmployee }) => {
                     <p>No employees to display</p>
                 ) : (
                     employees.map((employee) => (
-                        <div key={employee.id} className="employee-card">
-                        <img src={employee.image} alt={employee.name} />
-                        <div>
-                            <h3>
-                                {employee.name} {employee.surname} 
-                                {employee.role === 'admin' && (
-                                    <FontAwesomeIcon 
-                                        icon={faCheckCircle} 
-                                        className="verified-badge" 
-                                        title="Admin Verified"
-                                    />
-                                )}
-                            </h3>
-                            <p>IDNumber: {employee.id}</p>
-                            <p>Role: {employee.role}</p>
-                            <p>Age: {employee.age}</p>
+                        <div 
+                            key={employee.id} 
+                            className={`employee-card ${employee.role === 'admin' ? 'admin-card' : ''}`}
+                        >
+                            <img src={employee.image} alt={employee.name} />
+                            <div>
+                                <h3>
+                                    {employee.name} {employee.surname} 
+                                    {employee.role === 'admin' && (
+                                        <FontAwesomeIcon 
+                                            icon={faCheckCircle} 
+                                            className="verified-badge" 
+                                            title="Admin Verified"
+                                        />
+                                    )}
+                                </h3>
+                                <p>ID Number: {employee.id}</p>
+                                <p>Role: {employee.role}</p>
+                                <p>Age: {employee.age}</p>
+                            </div>
+                            <div className="edit-delete-btn">
+                                <button className="edit-btn" onClick={() => handleEdit(employee)}>Edit</button>
+                                <button className="delete-btn" onClick={() => deleteEmployee(employee.id)}>Delete</button>
+                                <button className="admin-btn" onClick={() => makeAdmin(employee.id)} disabled={employee.role === 'admin'}>
+                                    Make Admin
+                                </button>
+                                <button 
+                                    className="remove-admin-btn" 
+                                    onClick={() => removeAdmin(employee.id)} 
+                                    disabled={employee.role !== 'admin'}
+                                >
+                                    Remove Admin
+                                </button>
+                            </div>
                         </div>
-                        <div className="edit-delete-btn">
-                            <button className="edit-btn" onClick={() => handleEdit(employee)}>Edit</button>
-                            <button className="delete-btn" onClick={() => deleteEmployee(employee.id)}>Delete</button>
-                            <button className="admin-btn" onClick={() => makeAdmin(employee.id)} disabled={employee.role === 'admin'}>
-                                Make Admin
-                            </button>
-                            <button 
-                                className="remove-admin-btn" 
-                                onClick={() => removeAdmin(employee.id)} 
-                                disabled={employee.role !== 'admin'}
-                            >
-                                Remove Admin
-                            </button>
-                        </div>
-                    </div>
-                    
-                    
-
-
                     ))
                 )}
             </div>
         </div>
     );
+    
 };
 
 export default EmployeeList;
