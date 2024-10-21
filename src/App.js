@@ -3,57 +3,77 @@ import React, { useState } from "react";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeForm from "./components/EmployeeForm";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landingpage from "./components/Landingpage";
+import HamburgerMenu from "./components/HamburgerMenu";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+
+const ProtectedRoute = ({ element, loggedInUser }) => {
+    return loggedInUser ? element : <Navigate to="/login" />;
+};
 
 function App() {
-  const [employees, setEmployees] = useState([]);
-  const [employeeToEdit, setEmployeeToEdit] = useState(null);
-  const [loggedInUser, setLoggedInUser] = useState(null); // Track logged-in user
+    const [employees, setEmployees] = useState([]);
+    const [employeeToEdit, setEmployeeToEdit] = useState(null);
+    const [loggedInUser, setLoggedInUser] = useState(null); 
 
-  const addEmployee = (employee) => {
-    setEmployees([...employees, employee]);
-  };
+    const addEmployee = (employee) => {
+        setEmployees([...employees, employee]);
+    };
 
-  const updateEmployee = (updatedEmployee) => {
-    setEmployees(
-      employees.map((emp) =>
-        emp.id === updatedEmployee.id ? updatedEmployee : emp
-      )
+    const updateEmployee = (updatedEmployee) => {
+        setEmployees(
+            employees.map((emp) =>
+                emp.id === updatedEmployee.id ? updatedEmployee : emp
+            )
+        );
+        setEmployeeToEdit(null);
+    };
+
+    const editEmployee = (employee) => {
+        setEmployeeToEdit(employee);
+    };
+
+    const deleteEmployee = (id) => {
+        setEmployees(employees.filter((employee) => employee.id !== id));
+    };
+
+    const CurrentNavbar = () => {
+        const location = useLocation();
+      
+        return location.pathname === '/employeelist' ? <HamburgerMenu /> : null;
+    };
+
+    return (
+        <Router>
+            <CurrentNavbar />
+            <div className="App">
+                <Routes>
+                    <Route path="/employeelist" element={
+                        <ProtectedRoute 
+                            element={<EmployeeList 
+                                employees={employees} 
+                                editEmployee={editEmployee} 
+                                loggedInUser={loggedInUser} 
+                            />} 
+                            loggedInUser={loggedInUser} 
+                        />
+                    } />
+                    <Route path="/" element={
+                        <ProtectedRoute 
+                            element={<EmployeeForm 
+                                addEmployee={addEmployee} 
+                                updateEmployee={updateEmployee} 
+                                employeeToEdit={employeeToEdit} 
+                            />} 
+                            loggedInUser={loggedInUser} 
+                        />
+                    } />
+                    <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+                    <Route path='/landingpage' element={<Landingpage />} />
+                </Routes>
+            </div>
+        </Router>
     );
-    setEmployeeToEdit(null);
-  };
-
-  const editEmployee = (employee) => {
-    setEmployeeToEdit(employee);
-  };
-
-  const deleteEmployee = (id) => {
-    setEmployees(employees.filter((employee) => employee.id !== id));
-  };
-
-  return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/employeelist" element={
-            <EmployeeList
-              employees={employees}
-              editEmployee={editEmployee}
-              deleteEmployee={deleteEmployee}
-            />
-          } />
-          <Route path="/" element={
-            <EmployeeForm
-              addEmployee={addEmployee}
-              updateEmployee={updateEmployee}
-              employeeToEdit={employeeToEdit}
-            />
-          } />
-          <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} /> {/* Pass setLoggedInUser */}
-        </Routes>
-      </div>
-    </Router>
-  );
 }
 
 export default App;

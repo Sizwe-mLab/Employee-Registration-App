@@ -7,7 +7,7 @@ const Login = ({ setLoggedInUser }) => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,19 +21,14 @@ const Login = ({ setLoggedInUser }) => {
                 const employeeData = employeeDoc.data();
 
                 if (password === employeeData.password) {
-                    if (employeeData.role === 'admin') {
-                        setLoggedInUser({
-                            id: employeeDoc.id,
-                            ...employeeData,
-                        });
-                        console.log('Logged in as admin:', employeeData.name);
+                    setLoggedInUser({
+                        id: employeeDoc.id,
+                        ...employeeData,
+                    });
+                    console.log('Logged in as:', employeeData.name);
 
-                        
-                        console.log('Navigating to employeelist');
-                        navigate('/employeelist');
-                    } else {
-                        setError('Access denied. Only admins can log in.');
-                    }
+                   
+                    navigate('/employeelist');
                 } else {
                     setError('Incorrect password.');
                 }
@@ -48,7 +43,7 @@ const Login = ({ setLoggedInUser }) => {
 
     return (
         <div className="login-container">
-            <h2>Admin Login</h2>
+            <h2>Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="input-group">
                     <label>ID:</label>
