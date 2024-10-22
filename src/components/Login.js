@@ -4,7 +4,7 @@ import { db } from './FirebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setLoggedInUser }) => {
-    const [id, setId] = useState('');
+    const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Login = ({ setLoggedInUser }) => {
         e.preventDefault();
         try {
             const employeesCollection = collection(db, 'employees');
-            const q = query(employeesCollection, where('id', '==', id));
+            const q = query(employeesCollection, where('email', '==', email)); 
             const employeeSnapshot = await getDocs(q);
 
             if (!employeeSnapshot.empty) {
@@ -27,7 +27,6 @@ const Login = ({ setLoggedInUser }) => {
                     });
                     console.log('Logged in as:', employeeData.name);
 
-                  
                     if (employeeData.role === 'admin') {
                         navigate('/employeelist'); 
                     } else if (employeeData.role === 'employee') {
@@ -52,11 +51,11 @@ const Login = ({ setLoggedInUser }) => {
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="input-group">
-                    <label>ID:</label>
+                    <label>Email:</label> 
                     <input
-                        type="text"
-                        value={id}
-                        onChange={(e) => setId(e.target.value)}
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)} 
                         required
                     />
                 </div>

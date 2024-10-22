@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
 import "./Employeeform.css";
 
 const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
@@ -13,11 +14,13 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
     surname: "",
     idnumber: "",
     role: "",
+    email: "",
+    password: "",
     image: "",
   });
 
   const navigate = useNavigate();
-
+  const auth = getAuth(); 
   useEffect(() => {
     if (employeeToEdit) {
       setEmployee({
@@ -26,6 +29,8 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
         surname: employeeToEdit.surname || "",
         idnumber: employeeToEdit.idnumber || "",
         role: employeeToEdit.role || "",
+        email: employeeToEdit.email || "",
+        password: "",
         image: employeeToEdit.image || "",
       });
     }
@@ -38,8 +43,28 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
 
   const addEmployee = async (newEmployee) => {
     try {
-      const docRef = await addDoc(collection(db, "employees"), newEmployee);
-      console.log("Employee added with ID: ", docRef.id);
+     
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        newEmployee.email,
+        newEmployee.password
+      );
+      
+      const user = userCredential.user;
+
+    
+      await addDoc(collection(db, "employees"), {
+        name: newEmployee.name,
+        age: newEmployee.age,
+        surname: newEmployee.surname,
+        idnumber: newEmployee.idnumber,
+        role: newEmployee.role,
+        email: newEmployee.email,
+        image: newEmployee.image,
+        uid: user.uid, 
+      });
+
+      console.log("Employee added with ID: ", user.uid);
     } catch (error) {
       console.error("Error adding employee: ", error);
     }
@@ -59,6 +84,8 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
       surname: "",
       idnumber: "",
       role: "",
+      email: "",
+      password: "",
       image: "",
     });
   };
@@ -169,6 +196,22 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
               value={employee.role}
               onChange={handleChange}
               placeholder="__Role_______________________ "
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              value={employee.email}
+              onChange={handleChange}
+              placeholder="__Email_______________________ "
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              value={employee.password}
+              onChange={handleChange}
+              placeholder="__Password_______________________ "
               required
             />
           </div>
