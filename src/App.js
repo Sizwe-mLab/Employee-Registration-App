@@ -56,6 +56,7 @@ function App() {
                                 employees={employees} 
                                 editEmployee={editEmployee} 
                                 loggedInUser={loggedInUser} 
+                                
                             />} 
                             loggedInUser={loggedInUser} 
                         />

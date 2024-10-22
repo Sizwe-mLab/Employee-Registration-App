@@ -22,9 +22,18 @@ const HamburgerMenu = () => {
             {isOpen && (
                 <div className="menu">
                     <ul className="menu-list">
-                        {/* <li className="menu-item">
+                        <li className="menu-item">
                             <Link className="menu-link" to="/employeelist">Employee List</Link>
-                        </li> */}
+                        </li>
+                        <li className="menu-item">
+                            <Link className="menu-link" to="/">Employee Form</Link>
+                        </li>
+                        <li className="menu-item">
+                            <Link className="menu-link" to="/login">Login</Link>
+                        </li>
+                        <li className="menu-item">
+                            <Link className="menu-link" to="/employeedashboard"> Employee Dashboard</Link>
+                        </li>
                         <li className="menu-item">
                             <button className="menu-button" onClick={handleLogout}>Logout</button>
                         </li>

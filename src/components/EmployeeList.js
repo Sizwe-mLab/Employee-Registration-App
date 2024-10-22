@@ -41,6 +41,7 @@ const EmployeeList = ({ editEmployee }) => {
 
     const handleEdit = (employee) => {
         editEmployee(employee);
+        
     };
 
     const makeAdmin = async (id) => {
