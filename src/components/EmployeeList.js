@@ -3,12 +3,12 @@ import { db } from './FirebaseConfig';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import './EmployeeList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; 
-
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const EmployeeList = ({ editEmployee }) => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchId, setSearchId] = useState(''); // State for search input
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -41,9 +41,6 @@ const EmployeeList = ({ editEmployee }) => {
         editEmployee(employee);
     };
 
-    if (loading) {
-        return <p>Loading employees...</p>;
-    }
     const makeAdmin = async (id) => {
         const employeeDoc = doc(db, 'employees', id);
         try {
@@ -57,11 +54,12 @@ const EmployeeList = ({ editEmployee }) => {
             console.error("Error making employee admin:", error);
         }
     };
+
     const removeAdmin = async (id) => {
         const employeeDoc = doc(db, 'employees', id);
         try {
             await updateDoc(employeeDoc, { role: 'employee' });
-            const updatedEmployees = employees.map(employee => 
+            const updatedEmployees = employees.map(employee =>
                 employee.id === id ? { ...employee, role: 'employee' } : employee
             );
             setEmployees(updatedEmployees);
@@ -70,28 +68,45 @@ const EmployeeList = ({ editEmployee }) => {
             console.error("Error removing admin:", error);
         }
     };
-    
+
+    const filteredEmployees = searchId
+        ? employees.filter(employee => employee.id.toLowerCase().includes(searchId.toLowerCase())) // Filter employees by ID
+        : employees;
+
+    if (loading) {
+        return <p>Loading employees...</p>;
+    }
 
     return (
         <div>
             <h2>Employee List</h2>
+
+            {/* Search Bar */}
+            <input
+                type="text"
+                placeholder="Search by ID"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                className="search-bar"
+            />
+
             <div className="employee-list">
-                {employees.length === 0 ? (
+                {filteredEmployees.length === 0 ? (
                     <p>No employees to display</p>
                 ) : (
-                    employees.map((employee) => (
-                        <div 
-                            key={employee.id} 
+                    filteredEmployees.map((employee) => (
+                        <div
+                            key={employee.id}
                             className={`employee-card ${employee.role === 'admin' ? 'admin-card' : ''}`}
                         >
                             <img src={employee.image} alt={employee.name} />
                             <div>
                                 <h3>
-                                    {employee.name} {employee.surname} 
+                                    {employee.name} {employee.surname}
                                     {employee.role === 'admin' && (
-                                        <FontAwesomeIcon 
-                                            icon={faCheckCircle} 
-                                            className="verified-badge" 
+                                        <FontAwesomeIcon
+                                            icon={faCheckCircle}
+                                            className="verified-badge"
                                             title="Admin Verified"
                                         />
                                     )}
@@ -106,9 +121,9 @@ const EmployeeList = ({ editEmployee }) => {
                                 <button className="admin-btn" onClick={() => makeAdmin(employee.id)} disabled={employee.role === 'admin'}>
                                     Make Admin
                                 </button>
-                                <button 
-                                    className="remove-admin-btn" 
-                                    onClick={() => removeAdmin(employee.id)} 
+                                <button
+                                    className="remove-admin-btn"
+                                    onClick={() => removeAdmin(employee.id)}
                                     disabled={employee.role !== 'admin'}
                                 >
                                     Remove Admin
@@ -120,7 +135,6 @@ const EmployeeList = ({ editEmployee }) => {
             </div>
         </div>
     );
-    
 };
 
 export default EmployeeList;
