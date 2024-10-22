@@ -3,12 +3,14 @@ import { db } from './FirebaseConfig';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import './EmployeeList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeList = ({ editEmployee }) => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchId, setSearchId] = useState(''); // State for search input
+    const [searchId, setSearchId] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -70,7 +72,7 @@ const EmployeeList = ({ editEmployee }) => {
     };
 
     const filteredEmployees = searchId
-        ? employees.filter(employee => employee.id.toLowerCase().includes(searchId.toLowerCase())) // Filter employees by ID
+        ? employees.filter(employee => employee.id.toLowerCase().includes(searchId.toLowerCase())) 
         : employees;
 
     if (loading) {
@@ -79,9 +81,18 @@ const EmployeeList = ({ editEmployee }) => {
 
     return (
         <div>
-            <h2>Employee List</h2>
+            <div className="header">
+                <h2>Employee List</h2>
+                
+                <FontAwesomeIcon
+                    icon={faTimes}
+                    className="close-icon"
+                    onClick={() => navigate('/')} 
+                    title="Go back to Home"
+                />
+            </div>
 
-            {/* Search Bar */}
+          
             <input
                 type="text"
                 placeholder="Search by ID"

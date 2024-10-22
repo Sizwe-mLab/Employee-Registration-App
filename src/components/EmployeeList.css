@@ -135,3 +135,26 @@ h3 {
   font-size: 18px;
   vertical-align: middle;
 }
+
+
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-icon {
+  position: absolute;
+  left: 20px; 
+  top: 10px;  
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: #af960c;
+}

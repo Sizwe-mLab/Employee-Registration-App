@@ -28,7 +28,7 @@ const Login = ({ setLoggedInUser }) => {
                     console.log('Logged in as:', employeeData.name);
 
                    
-                    navigate('/employeelist');
+                    navigate('/');
                 } else {
                     setError('Incorrect password.');
                 }
