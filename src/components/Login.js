@@ -27,8 +27,14 @@ const Login = ({ setLoggedInUser }) => {
                     });
                     console.log('Logged in as:', employeeData.name);
 
-                   
-                    navigate('/');
+                  
+                    if (employeeData.role === 'admin') {
+                        navigate('/employeelist'); 
+                    } else if (employeeData.role === 'employee') {
+                        navigate('/employeedashboard'); 
+                    } else {
+                        setError('Invalid role.');
+                    }
                 } else {
                     setError('Incorrect password.');
                 }

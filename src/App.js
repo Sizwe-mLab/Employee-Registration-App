@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Landingpage from "./components/Landingpage";
 import HamburgerMenu from "./components/HamburgerMenu";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import EmployeeDashboard from "./components/EmployeeDashboard";
 
 const ProtectedRoute = ({ element, loggedInUser }) => {
     return loggedInUser ? element : <Navigate to="/login" />;
@@ -39,8 +40,9 @@ function App() {
 
     const CurrentNavbar = () => {
         const location = useLocation();
+        
       
-        return location.pathname === '/employeelist' ? <HamburgerMenu /> : null;
+        return (location.pathname === '/employeelist' || location.pathname === '/employeedashboard') ? <HamburgerMenu /> : null;
     };
 
     return (
@@ -70,6 +72,7 @@ function App() {
                     } />
                     <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
                     <Route path='/landingpage' element={<Landingpage />} />
+                    <Route path='/employeedashboard' element={<EmployeeDashboard />} />
                 </Routes>
             </div>
         </Router>
