@@ -30,7 +30,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
         idnumber: employeeToEdit.idnumber || "",
         role: employeeToEdit.role || "",
         email: employeeToEdit.email || "",
-        password: "",
+      
         image: employeeToEdit.image || "",
       });
     }
@@ -88,6 +88,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
       password: "",
       image: "",
     });
+    navigate("/employeelist");
   };
 
   const handleEmployeeList = () => {

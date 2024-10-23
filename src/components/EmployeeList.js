@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from './FirebaseConfig';
-import { collection, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import './EmployeeList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -25,7 +25,6 @@ const EmployeeList = ({ editEmployee }) => {
                 setLoading(false);
             }
         };
-
         fetchEmployees();
     }, []);
 
@@ -41,34 +40,21 @@ const EmployeeList = ({ editEmployee }) => {
 
     const handleEdit = (employee) => {
         editEmployee(employee);
-        
+        navigate("/"); 
     };
 
-    const makeAdmin = async (id) => {
-        const employeeDoc = doc(db, 'employees', id);
+    const toggleAdmin = async (employee) => {
+        const newRole = employee.role === 'admin' ? 'employee' : 'admin';
+        const employeeDoc = doc(db, 'employees', employee.id);
         try {
-            await updateDoc(employeeDoc, { role: 'admin' });
-            const updatedEmployees = employees.map(employee =>
-                employee.id === id ? { ...employee, role: 'admin' } : employee
+            await updateDoc(employeeDoc, { role: newRole });
+            const updatedEmployees = employees.map(emp =>
+                emp.id === employee.id ? { ...emp, role: newRole } : emp
             );
             setEmployees(updatedEmployees);
-            console.log(`Employee with ID: ${id} is now an admin.`);
+            console.log(`Employee with ID: ${employee.id} is now a ${newRole}.`);
         } catch (error) {
-            console.error("Error making employee admin:", error);
-        }
-    };
-
-    const removeAdmin = async (id) => {
-        const employeeDoc = doc(db, 'employees', id);
-        try {
-            await updateDoc(employeeDoc, { role: 'employee' });
-            const updatedEmployees = employees.map(employee =>
-                employee.id === id ? { ...employee, role: 'employee' } : employee
-            );
-            setEmployees(updatedEmployees);
-            console.log(`Employee with ID: ${id} is no longer an admin.`);
-        } catch (error) {
-            console.error("Error removing admin:", error);
+            console.error(`Error updating role to ${newRole}:`, error);
         }
     };
 
@@ -84,7 +70,6 @@ const EmployeeList = ({ editEmployee }) => {
         <div>
             <div className="header">
                 <h2>Employee List</h2>
-                
                 <FontAwesomeIcon
                     icon={faTimes}
                     className="close-icon"
@@ -92,8 +77,6 @@ const EmployeeList = ({ editEmployee }) => {
                     title="Go back to Home"
                 />
             </div>
-
-          
             <input
                 type="text"
                 placeholder="Search by ID"
@@ -101,7 +84,6 @@ const EmployeeList = ({ editEmployee }) => {
                 onChange={(e) => setSearchId(e.target.value)}
                 className="search-bar"
             />
-
             <div className="employee-list">
                 {filteredEmployees.length === 0 ? (
                     <p>No employees to display</p>
@@ -130,15 +112,11 @@ const EmployeeList = ({ editEmployee }) => {
                             <div className="edit-delete-btn">
                                 <button className="edit-btn" onClick={() => handleEdit(employee)}>Edit</button>
                                 <button className="delete-btn" onClick={() => deleteEmployee(employee.id)}>Delete</button>
-                                <button className="admin-btn" onClick={() => makeAdmin(employee.id)} disabled={employee.role === 'admin'}>
-                                    Make Admin
-                                </button>
                                 <button
-                                    className="remove-admin-btn"
-                                    onClick={() => removeAdmin(employee.id)}
-                                    disabled={employee.role !== 'admin'}
+                                    className={`toggle-admin-btn ${employee.role === 'admin' ? 'remove-admin-btn' : 'make-admin-btn'}`}
+                                    onClick={() => toggleAdmin(employee)}
                                 >
-                                    Remove Admin
+                                    {employee.role === 'admin' ? 'Remove Admin' : 'Make Admin'}
                                 </button>
                             </div>
                         </div>
