@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from './FirebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = ({ setLoggedInUser }) => {
     const [email, setEmail] = useState(''); 
@@ -27,9 +28,9 @@ const Login = ({ setLoggedInUser }) => {
                     });
                     console.log('Logged in as:', employeeData.name);
 
-                    if (employeeData.role === 'admin') {
+                    if (employeeData.role === 'employee') {
                         navigate('/employeelist'); 
-                    } else if (employeeData.role === 'employee') {
+                    } else if (employeeData.role === 'admin') {
                         navigate('/employeedashboard'); 
                     } else {
                         setError('Invalid role.');
@@ -47,8 +48,14 @@ const Login = ({ setLoggedInUser }) => {
     };
 
     return (
+    
+
+     
         <div className="login-container">
-            <h2>Login</h2>
+             <div>
+             <h2>Login</h2>
+           
+      
             <form onSubmit={handleLogin}>
                 <div className="input-group">
                     <label>Email:</label> 
@@ -71,6 +78,7 @@ const Login = ({ setLoggedInUser }) => {
                 {error && <p className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
+        </div>
         </div>
     );
 };

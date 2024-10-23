@@ -1,0 +1,83 @@
+
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+  
+  .landing-header {
+    z-index: 1; 
+    padding: 20px;
+  }
+  
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color:rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: rgba(255, 0, 0, 1);
+  }
+  
+ 
+  @keyframes backgroundAnimation {
+    0% {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    50% {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    100% {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
+  
+  .landing-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+    opacity: 0.5;
+    animation: backgroundAnimation 8s infinite alternate;
+    z-index: 0; 
+  }
+  
+ 
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  .landing-page::before {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+    background-size: 200% 200%;
+    animation: gradientAnimation 8s ease infinite;
+  }
+  
