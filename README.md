@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+## Employee Management App - Frontend
+This is the frontend for an Employee Management application built with React, Firebase, and Axios. It allows users to manage employee data, including adding, editing, deleting, and viewing employee profiles. Users can also log in and manage roles.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Live Links
 
-### `npm start`
+- **Frontend**: [Employee Registration App](https://employee-registration-app-eta.vercel.app)
+- **API**: [Employee API](https://employee-app-nodejs-1-1jjz.onrender.com/api/employees)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Features
+1. Employee Form: Add and edit employee details including name, age, surname, ID number, role, email, password, and image.
+2. Employee List: View all employees with the ability to search by ID, edit, delete, and toggle admin roles.
+3. Authentication: Secure login for users with role-based redirection (employees and admins).
+4. Image Upload: Upload and preview employee images.
 
-### `npm test`
+- **React**: JavaScript library for building user interfaces.
+- **Firebase**: Backend services for authentication and Firestore database.
+- **Axios**: HTTP client for making API requests to a backend server.
+- **Font Awesome**: Icons for enhancing UI.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js and npm installed on your machine.
+- Firebase project set up with Firestore and Authentication.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Installation
 
-### `npm run eject`
+1. Clone the repository:
+git clone https://github.com/TshepoMadira/Employee-Registration-App.git
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the project directory:
+cd Employee-Registration-App
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install dependencies:
+ npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. To run the app use :
+ npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Usage
+1. Navigate to the login page and sign in using your credentials [email and password].
+2. Upon successful login, you'll be redirected to the employee list if you are Employee or dashboard if you admin it is based on your role.
+3. Use the Employee Form to add new employees or edit existing ones.
+4. Manage employee roles directly from the employee list.
+5. Remove or Demote admin in the Employee dashboard
 
-## Learn More
+#### Folder Structure
+src/
+├── components/
+│   ├── EmployeeForm.js
+│   ├── EmployeeList.js
+│   ├── Login.js
+├── FirebaseConfig.js
+├── App.js
+├── index.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Styling
+The app uses a custom CSS file for styling components located in the respective component folders (e.g., EmployeeForm.css, EmployeeList.css, Login.css).
 
-### Code Splitting
+##### Contributing
+If you'd like to contribute, feel free to fork the repository and submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Links of
