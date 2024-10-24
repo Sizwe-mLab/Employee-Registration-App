@@ -38,7 +38,7 @@
 
 
 .menu-button {
-    background-color: #0056B3; 
+    background-color: rgba(255, 0, 0, 0.5); 
     color: white;
     border: none; 
     padding: 10px 15px; 
@@ -49,13 +49,13 @@
 
 
 .menu-button:hover {
-    background-color: #007BFF; 
+    background-color: rgba(255, 0, 0, 1); 
     transform: scale(1.05);
 }
 
 
 .menu-button:focus {
-    outline: 2px solid #0056B3; 
+    outline: 2px solid #b3002d; 
     outline-offset: 2px; 
 }
 

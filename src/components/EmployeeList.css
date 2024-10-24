@@ -46,6 +46,7 @@ h3 {
 .edit-btn,
 .delete-btn,
 .admin-btn,
+.make-admin-btn,
 .remove-admin-btn {
   margin-top: 5px;
   padding: 8px;
@@ -59,31 +60,39 @@ h3 {
 
 
 .edit-btn {
-  background-color: #0056B3;
+  background-color: rgba(255, 0, 0, 0.5);
   color: white;
 }
 
 .delete-btn {
-  background-color: #0056B3;
+  background-color: rgba(255, 0, 0, 0.5);
   color: white;
 }
 
 .admin-btn {
-  background-color: #0056B3;
+  background-color: rgba(255, 0, 0, 0.5);
   color: white;
 }
 
 .remove-admin-btn {
-  background-color: #0056B3;
+  background-color: rgba(255, 0, 0, 0.5);
   color: white;
 }
+
+.make-admin-btn{
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+}
+
+
 
 
 .edit-btn:hover,
 .delete-btn:hover,
 .admin-btn:hover,
+.make-admin-btn:hover,
 .remove-admin-btn:hover {
-  background-color: #007BFF; 
+  background-color: rgba(255, 0, 0, 1);
   transform: scale(1.05); 
 }
 
@@ -91,8 +100,9 @@ h3 {
 .edit-btn:focus,
 .delete-btn:focus,
 .admin-btn:focus,
+.make-admin-btn:focus,
 .remove-admin-btn:focus {
-  outline: 2px solid #0056B3; 
+  outline: 2px solid #b3002d;
   outline-offset: 2px; 
 }
 
@@ -100,6 +110,7 @@ h3 {
 .edit-btn,
 .delete-btn,
 .admin-btn,
+.make-admin-btn,
 .remove-admin-btn {
   position: relative;
   overflow: hidden; 
@@ -108,6 +119,7 @@ h3 {
 .edit-btn::after,
 .delete-btn::after,
 .admin-btn::after,
+.make-admin-btn::after,
 .remove-admin-btn::after {
   content: '';
   position: absolute;
@@ -125,12 +137,13 @@ h3 {
 .edit-btn:hover::after,
 .delete-btn:hover::after,
 .admin-btn:hover::after,
+.make-admin-btn::after,
 .remove-admin-btn:hover::after {
   transform: translate(-50%, -50%) scale(1); 
 }
 
 .verified-badge {
-  color: #0eec0e;
+  color: #007BFF;
   margin-left: 10px;
   font-size: 18px;
   vertical-align: middle;
@@ -157,5 +170,27 @@ h3 {
 
 .close-icon:hover {
   color: #af960c;
+}
+.search-bar {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px solid rgba(255, 0, 0, 1); 
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar:focus {
+  border-color: #b3002d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar::placeholder {
+  color: #aaa;
+  font-style: italic;
 }
 

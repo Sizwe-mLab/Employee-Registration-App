@@ -47,38 +47,44 @@ const Login = ({ setLoggedInUser }) => {
         }
     };
 
-    return (
     
+    const handleBackToLanding = () => {
+        navigate('/landingpage'); 
+    };
 
-     
+    return (
         <div className="login-container">
-             <div>
-             <h2>Login</h2>
-           
-      
-            <form onSubmit={handleLogin}>
-                <div className="input-group">
-                    <label>Email:</label> 
-                    <input
-                        type="email" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} 
-                        required
-                    />
+            <div>
+            
+                <div className="back-arrow" onClick={handleBackToLanding} style={{ cursor: 'pointer', marginBottom: '20px' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                 </div>
-                <div className="input-group">
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <p className="error">{error}</p>}
-                <button type="submit">Login</button>
-            </form>
-        </div>
+                <h2>Login</h2>
+                <form onSubmit={handleLogin}>
+                    <div className="email">
+                        <label>Email:</label> 
+                        <input
+                            type="email" 
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} 
+                            required
+                        />
+                    </div>
+                    <div className="password">
+                        <label>Password:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className="error">{error}</p>}
+                    <button className='login-btn' type="submit">Login</button>
+                </form>
+            </div>
         </div>
     );
 };
