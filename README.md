@@ -5,8 +5,8 @@ This is the frontend for an Employee Management application built with React, Fi
 
 ## Live Links
 
-- **Frontend**: [Employee Registration App](https://employee-registration-app-eta.vercel.app)
-- **API**: [Employee API](https://employee-app-nodejs-1-1jjz.onrender.com/api/employees)
+- **Frontend**: (https://employee-registration-app-eta.vercel.app)
+- **API**: (https://employee-app-nodejs-1-1jjz.onrender.com/api/employees)
 
 
 ### Features
@@ -36,11 +36,15 @@ git clone https://github.com/TshepoMadira/Employee-Registration-App.git
 2. Navigate to the project directory:
 cd Employee-Registration-App
 
-3. Install dependencies:
+3. Git checkout dev
+
+4. Install dependencies:
  npm install
 
-4. To run the app use :
+5. To run the app use :
  npm start
+
+
 
 #### Usage
 1. Navigate to the login page and sign in using your credentials [email and password].
@@ -66,4 +70,3 @@ The app uses a custom CSS file for styling components located in the respective 
 ##### Contributing
 If you'd like to contribute, feel free to fork the repository and submit a pull request.
 
-### Links of
