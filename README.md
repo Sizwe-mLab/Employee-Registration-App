@@ -51,7 +51,9 @@ cd Employee-Registration-App
 
 Email: danny@gmail.com
 Password: admin1111
+
  OR
+ 
 Email: beijing@gmail.com
 Password: employee12
 
