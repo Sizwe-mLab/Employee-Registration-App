@@ -47,7 +47,14 @@ cd Employee-Registration-App
 
 
 #### Usage
-1. Navigate to the login page and sign in using your credentials [email and password].
+1. Navigate to the login page and sign in using the following credentials:
+
+Email: danny@gmail.com
+Password: admin1111
+ OR
+Email: beijing@gmail.com
+Password: employee12
+
 2. Upon successful login, you'll be redirected to the employee list if you are Employee or dashboard if you admin it is based on your role.
 3. Use the Employee Form to add new employees or edit existing ones.
 4. Manage employee roles directly from the employee list.
@@ -69,4 +76,6 @@ The app uses a custom CSS file for styling components located in the respective 
 
 ##### Contributing
 If you'd like to contribute, feel free to fork the repository and submit a pull request.
+
+
 
