@@ -91,4 +91,40 @@
   .edit-admin-btn:hover::after{
     transform: translate(-50%, -50%) scale(1); 
   }
+
+
+  .save-changes{
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+
+  }
+
+  .save-changes:hover{
+    background-color: rgba(255, 0, 0, 1); 
+    transform: scale(1.05); 
+
+  }
+
+  .cancel{
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+    width: 100px
+  }
+
+
+  .cancel:hover{
+    background-color: rgba(255, 0, 0, 1); 
+    transform: scale(1.05); 
+  }
+
+
+
  

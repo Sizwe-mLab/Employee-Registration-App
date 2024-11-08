@@ -79,7 +79,7 @@ const Login = ({ setLoggedInUser }) => {
             />
           </div>
           {error && <p className="error">{error}</p>}
-          <button type="submit">Login</button>
+          <button className='login-button'type="submit">Login</button>
         </form>
       </div>
     </div>

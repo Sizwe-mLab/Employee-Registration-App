@@ -181,8 +181,8 @@ const EmployeeDashboard = () => {
                 />
               </label>
             </form>
-            <button onClick={handleEditSubmit}>Save Changes</button>
-            <button onClick={() => setIsEditing(false)}>Cancel</button>
+            <button className='save-changes'onClick={handleEditSubmit}>Save Changes</button>
+            <button className='cancel'onClick={() => setIsEditing(false)}>Cancel</button>
           </div>
         </div>
       )}
