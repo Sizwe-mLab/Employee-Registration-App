@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import Landingpage from "./components/Landingpage";
 import HamburgerMenu from "./components/HamburgerMenu";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import EmployeeDashboard from "./components/EmployeeDashboard";
+import EmployeeAdmin from "./components/EmployeeAdmin";
 
 const ProtectedRoute = ({ element, loggedInUser }) => {
     return loggedInUser ? element : <Navigate to="/login" />;
@@ -73,7 +73,7 @@ function App() {
                     } />
                     <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
                     <Route path='/landingpage' element={<Landingpage />} />
-                    <Route path='/employeedashboard' element={<EmployeeDashboard />} />
+                    <Route path='/employeeadmin' element={<EmployeeAdmin />} />
                 </Routes>
             </div>
         </Router>

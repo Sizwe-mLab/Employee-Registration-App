@@ -28,11 +28,9 @@ const HamburgerMenu = () => {
                         <li className="menu-item">
                             <Link className="menu-link" to="/">Employee Form</Link>
                         </li>
+                        
                         <li className="menu-item">
-                            <Link className="menu-link" to="/login">Login</Link>
-                        </li>
-                        <li className="menu-item">
-                            <Link className="menu-link" to="/employeedashboard"> Employee Dashboard</Link>
+                            <Link className="menu-link" to="/employeeadmin"> Employee Admin</Link>
                         </li>
                         <li className="menu-item">
                             <button className="menu-button" onClick={handleLogout}>Logout</button>

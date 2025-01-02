@@ -5,7 +5,7 @@ import './EmployeeDashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-const EmployeeDashboard = () => {
+const EmployeeAdmin = () => {
   const [admins, setAdmins] = useState([]);
   const [selectedAdmin, setSelectedAdmin] = useState(null); 
   const [isEditing, setIsEditing] = useState(false); 
@@ -190,4 +190,4 @@ const EmployeeDashboard = () => {
   );
 };
 
-export default EmployeeDashboard;
+export default EmployeeAdmin;

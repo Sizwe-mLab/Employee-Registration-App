@@ -19,7 +19,7 @@ const EmployeeList = ({ editEmployee }) => {
         return;
       }
       try {
-        const response = await axios.get('https://employee-app-nodejs-1-1jjz.onrender.com/api/employees', {
+        const response = await axios.get('https://employee-app-nodejs-2-ycr8.onrender.com/api/employees', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEmployees(response.data); 
@@ -35,7 +35,7 @@ const EmployeeList = ({ editEmployee }) => {
   const deleteEmployee = async (id) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`https://employee-app-nodejs-1-1jjz.onrender.com/api/employees/${id}`, {
+      await axios.delete(`https://employee-app-nodejs-2-ycr8.onrender.com/api/employees/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmployees(employees.filter(employee => employee.id !== id));
@@ -53,16 +53,18 @@ const EmployeeList = ({ editEmployee }) => {
     const token = localStorage.getItem('token');
     const newRole = employee.role === 'admin' ? 'employee' : 'admin';
     try {
-      await axios.put(`https://employee-app-nodejs-1-1jjz.onrender.com/api/employees/${employee.id}`, { role: newRole }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.put(
+        `https://employee-app-nodejs-2-ycr8.onrender.com/api/employees/${employee.id}`,
+        { role: newRole },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       const updatedEmployees = employees.map(emp =>
         emp.id === employee.id ? { ...emp, role: newRole } : emp
       );
       setEmployees(updatedEmployees);
       console.log(`Employee with ID: ${employee.id} is now a ${newRole}.`);
     } catch (error) {
-      console.error(`Error updating role to ${newRole}:`, error);
+      console.error(`Error updating role to ${newRole}:`, error.response ? error.response.data : error.message);
     }
   };
 
