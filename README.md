@@ -42,53 +42,51 @@ This is the frontend for an **Employee Management Application** built with **Rea
 1. Clone the repository:
    ```bash
    git clone https://github.com/TshepoMadira/Employee-Registration-App.git
-Navigate to the project directory:
+
+2. Navigate to the project directory:
+  cd Employee-Registration-App
+
+3. Switch to the dev branch:
+  git checkout dev
+
+4. Install dependencies:
+   npm install
+
+5. Run the app:
+   npm start
 
 
-cd Employee-Registration-App
-Switch to the dev branch:
-
-
-git checkout dev
-Install dependencies:
-
-
-npm install
-Run the app:
-
-
-npm start
-🖥️ Usage
+## 🖥️ Usage
 Navigate to the login page and sign in using the following credentials:
 
-Employee Login:
+- **Employee Login**:
 
-Email: johndoe@gmail.com
+ Email: johndoe@gmail.com
 
-Password: employee221
+ Password: employee221
 
-Admin Login:
+- **Admin Login**:
 
-Email: losbi@gmail.com
+ Email: losbi@gmail.com
 
-Password: TI200&11y
+ Password: TI200&11y
 
 Upon successful login:
 
-If you are an Employee, you'll be redirected to the employee list.
+- If you are an Employee, you'll be redirected to the employee list.
 
-If you are an Admin, you'll be redirected to the employee admin dashboard with additional privileges.
+- If you are an Admin, you'll be redirected to the employee admin dashboard with additional privileges.
 
-Use the Employee Form to add new employees or edit existing ones.
+- Use the Employee Form to add new employees or edit existing ones.
 
 Manage employee roles directly from the employee list.
 
-Admins can remove or demote other admins in the Employee dashboard.
+- Admins can remove or demote other admins in the Employee dashboard.
 
-Admins are marked with a verified badge (✅) in the employee list.
+- Admins are marked with a verified badge (✅) in the employee list.
 
-📂 Folder Structure
-Copy
+### 📂 Folder Structure
+
 src/
 ├── components/
 │   ├── EmployeeForm.js
@@ -97,8 +95,10 @@ src/
 ├── FirebaseConfig.js
 ├── App.js
 ├── index.js
-🎨 Styling
-The app uses custom CSS files for styling components located in the respective component folders (e.g., EmployeeForm.css, EmployeeList.css, Login.css).
 
-🤝 Contributing
+
+### 🎨 Styling
+- The app uses custom CSS files for styling components located in the respective component folders (e.g., EmployeeForm.css, EmployeeList.css, Login.css).
+
+### 🤝 Contributing
 If you'd like to contribute, feel free to fork the repository and submit a pull request. Contributions are welcome!
