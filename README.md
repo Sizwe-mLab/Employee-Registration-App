@@ -49,15 +49,15 @@ cd Employee-Registration-App
 #### Usage
 1. Navigate to the login page and sign in using the following credentials:
 
-Email: danny@gmail.com
-Password: admin1111
+Email: johndoe@gmail.com
+Password: employee221
 
  OR
  
-Email: beijing@gmail.com
-Password: employee12
+Email: losbi@gmail.com
+Password: TI200&11y
 
-2. Upon successful login, you'll be redirected to the employee list if you are Employee or dashboard if you admin it is based on your role.
+2. Upon successful login, you'll be redirected to the employee list if you are Employee or employeeadmin if you admin it is based on your role.
 3. Use the Employee Form to add new employees or edit existing ones.
 4. Manage employee roles directly from the employee list.
 5. Remove or Demote admin in the Employee dashboard

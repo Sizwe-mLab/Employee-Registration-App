@@ -1,0 +1,165 @@
+
+.employee-admin-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+.employees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.employee-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.employee-card:hover {
+  transform: translateY(-5px);
+}
+
+.employee-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.employee-details {
+  margin-top: 15px;
+}
+
+.employee-name {
+  font-size: 1.5rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.verified-badge {
+  color: blue;
+  font-size: 1.2rem;
+}
+
+.employee-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.employee-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.toggle-admin-btn,
+.edit-admin-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.toggle-admin-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.toggle-admin-btn.remove-admin-btn {
+  background: #dc3545;
+}
+
+.edit-admin-btn {
+  background: #dc3545;
+  color: #fff;
+}
+.edit-admin-btn:hover{
+  background-color: rgba(255, 0, 0, 1);
+
+}
+
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-changes-btn,
+.cancel-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.save-changes-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: #fff;
+}

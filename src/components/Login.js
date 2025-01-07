@@ -14,44 +14,46 @@ const Login = ({ setLoggedInUser }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const token = await user.getIdToken();
 
-      
       console.log("Firebase Auth Token:", token);
 
+     
       const employeesCollection = collection(db, 'employees');
-      const q = query(employeesCollection, where('email', '==', email));
+      const q = query(employeesCollection, where('uid', '==', user.uid));
       const employeeSnapshot = await getDocs(q);
 
       if (!employeeSnapshot.empty) {
         const employeeDoc = employeeSnapshot.docs[0];
         const employeeData = employeeDoc.data();
-        if (password === employeeData.password) {
-          setLoggedInUser({
-            id: employeeDoc.id,
-            ...employeeData,
-            token
-          });
-          console.log('Logged in as:', employeeData.name);
-          localStorage.setItem('token', token);
-          if (employeeData.role === 'employee') {
-            navigate('/employeelist');
-          } else if (employeeData.role === 'admin') {
-            navigate('/employeedashboard');
-          } else {
-            setError('Invalid role.');
-          }
+
+        
+        setLoggedInUser({
+          id: employeeDoc.id,
+          ...employeeData,
+          token,
+        });
+
+        console.log('Logged in as:', employeeData.name);
+        localStorage.setItem('token', token);
+
+        
+        if (employeeData.role === 'employee') {
+          navigate('/employeelist');
+        } else if (employeeData.role === 'admin') {
+          navigate('/employeeadmin');
         } else {
-          setError('Incorrect password.');
+          setError('Invalid role.');
         }
       } else {
-        setError('User not found.');
+        setError('User not found in Firestore.');
       }
     } catch (error) {
       console.error('Error during login:', error);
-      setError('Login failed. Please try again.');
+      setError('Login failed. Please check your email and password.');
     }
   };
 
@@ -79,7 +81,7 @@ const Login = ({ setLoggedInUser }) => {
             />
           </div>
           {error && <p className="error">{error}</p>}
-          <button className='login-button'type="submit">Login</button>
+          <button className="login-button" type="submit">Login</button>
         </form>
       </div>
     </div>

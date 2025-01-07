@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { db } from "./FirebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./FirebaseConfig";
 import "./Employeeform.css";
 
-const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
+const EmployeeForm = ({ addEmployee, updateEmployee, employeeToEdit }) => {
   const [employee, setEmployee] = useState({
     name: "",
     age: "",
@@ -20,7 +20,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
   });
 
   const navigate = useNavigate();
-  const auth = getAuth(); 
+
   useEffect(() => {
     if (employeeToEdit) {
       setEmployee({
@@ -30,71 +30,77 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
         idnumber: employeeToEdit.idnumber || "",
         role: employeeToEdit.role || "",
         email: employeeToEdit.email || "",
-      
+        password: employeeToEdit.password || "",
         image: employeeToEdit.image || "",
+      });
+    } else {
+     
+      setEmployee({
+        name: "",
+        age: "",
+        surname: "",
+        idnumber: "",
+        role: "",
+        email: "",
+        password: "",
+        image: "",
       });
     }
   }, [employeeToEdit]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEmployee((prev) => ({ ...prev, [name]: value }));
   };
 
-  const addEmployee = async (newEmployee) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-     
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        newEmployee.email,
-        newEmployee.password
-      );
-      
-      const user = userCredential.user;
+      if (employeeToEdit) {
+        
+        const employeeRef = doc(db, "employees", employeeToEdit.id);
+        await updateDoc(employeeRef, employee);
+        updateEmployee(employee); 
+      } else {
+        
+        const userCredential = await createUserWithEmailAndPassword(auth, employee.email, employee.password);
+        const user = userCredential.user;
 
-    
-      await addDoc(collection(db, "employees"), {
-        name: newEmployee.name,
-        age: newEmployee.age,
-        surname: newEmployee.surname,
-        idnumber: newEmployee.idnumber,
-        role: newEmployee.role,
-        email: newEmployee.email,
-        image: newEmployee.image,
-        uid: user.uid, 
+       
+        const docRef = await addDoc(collection(db, "employees"), {
+          ...employee,
+          uid: user.uid, 
+        });
+
+        addEmployee({ ...employee, id: docRef.id, uid: user.uid });
+      }
+
+  
+      setEmployee({
+        name: "",
+        age: "",
+        surname: "",
+        idnumber: "",
+        role: "",
+        email: "",
+        password: "",
+        image: "",
       });
 
-      console.log("Employee added with ID: ", user.uid);
+      
+      navigate("/employeelist");
     } catch (error) {
-      console.error("Error adding employee: ", error);
+      console.error("Error adding/updating document: ", error);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (employeeToEdit) {
-      updateEmployee(employee);
-    } else {
-      addEmployee(employee);
-    }
-
-    setEmployee({
-      name: "",
-      age: "",
-      surname: "",
-      idnumber: "",
-      role: "",
-      email: "",
-      password: "",
-      image: "",
-    });
-    navigate("/employeelist");
-  };
-
+ 
   const handleEmployeeList = () => {
     navigate("/employeelist");
   };
 
+ 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -106,6 +112,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
     }
   };
 
+ 
   const handleDeleteImage = () => {
     setEmployee((prev) => ({ ...prev, image: "" }));
   };
@@ -218,7 +225,7 @@ const EmployeeForm = ({ updateEmployee, employeeToEdit }) => {
           </div>
         </div>
 
-        <button className='submitted'type="submit">
+        <button className="submitted" type="submit">
           {employeeToEdit ? "Update Employee" : "Add Employee"}
         </button>
       </form>

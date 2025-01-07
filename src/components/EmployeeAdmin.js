@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './FirebaseConfig';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
-import './EmployeeDashboard.css';
+import './EmployeeAdmin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const EmployeeAdmin = () => {
   const [admins, setAdmins] = useState([]);
-  const [selectedAdmin, setSelectedAdmin] = useState(null); 
-  const [isEditing, setIsEditing] = useState(false); 
+  const [selectedAdmin, setSelectedAdmin] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     age: '',
     email: '',
-    salary: ''
+    salary: '',
   });
 
   useEffect(() => {
@@ -26,8 +26,7 @@ const EmployeeAdmin = () => {
         ...doc.data(),
       }));
 
-      
-      const adminList = employeeList.filter(employee => employee.role === 'admin');
+      const adminList = employeeList.filter((employee) => employee.role === 'admin');
       setAdmins(adminList);
     };
 
@@ -40,7 +39,7 @@ const EmployeeAdmin = () => {
 
     try {
       await updateDoc(adminRef, { role: newRole });
-      const updatedAdmins = admins.filter(ad => ad.id !== admin.id);
+      const updatedAdmins = admins.filter((ad) => ad.id !== admin.id);
       setAdmins(updatedAdmins);
       console.log(`Admin with ID: ${admin.id} is now a ${newRole}.`);
     } catch (error) {
@@ -49,22 +48,22 @@ const EmployeeAdmin = () => {
   };
 
   const handleEditClick = (admin) => {
-    setSelectedAdmin(admin); 
+    setSelectedAdmin(admin);
     setFormData({
       name: admin.name,
       surname: admin.surname,
       age: admin.age,
       email: admin.email,
-      salary: admin.salary
+      salary: admin.salary,
     });
-    setIsEditing(true); 
+    setIsEditing(true);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -75,12 +74,11 @@ const EmployeeAdmin = () => {
 
     try {
       await updateDoc(adminRef, formData);
-     
       const updatedAdmins = admins.map((admin) =>
         admin.id === selectedAdmin.id ? { ...admin, ...formData } : admin
       );
       setAdmins(updatedAdmins);
-      setIsEditing(false); 
+      setIsEditing(false);
       console.log('Admin updated successfully');
     } catch (error) {
       console.error('Error updating admin:', error);
@@ -88,14 +86,14 @@ const EmployeeAdmin = () => {
   };
 
   return (
-    <div className="employee-dashboard">
-      <h1>Admin Dashboard</h1>
+    <div className="employee-admin-container">
+      <h1 className="dashboard-title">Admin Dashboard</h1>
       <div className="employees-grid">
         {admins.map((admin) => (
-          <div className="employees-card" key={admin.id}>
-            <img src={admin.image} alt={admin.name} />
-            <div>
-              <h3>
+          <div className="employee-card" key={admin.id}>
+            <img src={admin.image} alt={admin.name} className="employee-image" />
+            <div className="employee-details">
+              <h3 className="employee-name">
                 {admin.name} {admin.surname}
                 {admin.role === 'admin' && (
                   <FontAwesomeIcon
@@ -105,23 +103,20 @@ const EmployeeAdmin = () => {
                   />
                 )}
               </h3>
-              <p>ID Number: {admin.id}</p>
-              <p>Role: {admin.role}</p>
-              <p>Age: {admin.age}</p>
-              <p>Email: {admin.email}</p>
-              <p>Salary: {admin.salary}</p>
+              <p className="employee-info">ID Number: {admin.id}</p>
+              <p className="employee-info">Role: {admin.role}</p>
+              <p className="employee-info">Age: {admin.age}</p>
+              <p className="employee-info">Email: {admin.email}</p>
+              <p className="employee-info">Salary: {admin.salary}</p>
             </div>
-            <div className="edit-delete-btn">
+            <div className="employee-actions">
               <button
                 className={`toggle-admin-btn ${admin.role === 'admin' ? 'remove-admin-btn' : 'make-admin-btn'}`}
                 onClick={() => toggleAdminStatus(admin)}
               >
-                Remove Admin
+                {admin.role === 'admin' ? 'Remove Admin' : 'Make Admin'}
               </button>
-              <button
-                className="edit-admin-btn"
-                onClick={() => handleEditClick(admin)}
-              >
+              <button className="edit-admin-btn" onClick={() => handleEditClick(admin)}>
                 Edit
               </button>
             </div>
@@ -129,60 +124,70 @@ const EmployeeAdmin = () => {
         ))}
       </div>
 
-      
       {isEditing && (
-        <div className="edit-modal">
-          <div className="modal-content">
-            <h2>Edit Admin Details</h2>
-            <form>
-              <label>
+        <div className="edit-modal-overlay">
+          <div className="edit-modal">
+            <h2 className="modal-title">Edit Admin Details</h2>
+            <form className="edit-form">
+              <label className="form-label">
                 Name:
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
-              <label>
+              <label className="form-label">
                 Surname:
                 <input
                   type="text"
                   name="surname"
                   value={formData.surname}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
-              <label>
+              <label className="form-label">
                 Age:
                 <input
                   type="number"
                   name="age"
                   value={formData.age}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
-              <label>
+              <label className="form-label">
                 Email:
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
-              <label>
+              <label className="form-label">
                 Salary:
                 <input
                   type="number"
                   name="salary"
                   value={formData.salary}
                   onChange={handleInputChange}
+                  className="form-input"
                 />
               </label>
             </form>
-            <button className='save-changes'onClick={handleEditSubmit}>Save Changes</button>
-            <button className='cancel'onClick={() => setIsEditing(false)}>Cancel</button>
+            <div className="modal-actions">
+              <button className="save-changes-btn" onClick={handleEditSubmit}>
+                Save Changes
+              </button>
+              <button className="cancel-btn" onClick={() => setIsEditing(false)}>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
