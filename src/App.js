@@ -8,6 +8,7 @@ import HamburgerMenu from "./components/HamburgerMenu";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import EmployeeAdmin from "./components/EmployeeAdmin";
 
+
 const ProtectedRoute = ({ element, loggedInUser }) => {
     return loggedInUser ? element : <Navigate to="/login" />;
 };

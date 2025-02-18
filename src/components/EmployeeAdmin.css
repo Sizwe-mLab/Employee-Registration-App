@@ -163,3 +163,25 @@
   background: #dc3545;
   color: #fff;
 }
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.back-btn svg {
+  margin-right: 8px;
+}
+
+
+

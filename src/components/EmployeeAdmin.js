@@ -3,9 +3,11 @@ import { db } from './FirebaseConfig';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import './EmployeeAdmin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faArrowLeft, faEdit, faTrashAlt, faSave, faTimes } from '@fortawesome/free-solid-svg-icons'; // Import the required icons
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeAdmin = () => {
+  const navigate = useNavigate();
   const [admins, setAdmins] = useState([]);
   const [selectedAdmin, setSelectedAdmin] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -85,8 +87,17 @@ const EmployeeAdmin = () => {
     }
   };
 
+  const handleBackClick = () => {
+    navigate('/employeeList'); // Navigate back to the Employee List page
+  };
+
   return (
     <div className="employee-admin-container">
+      {/* Back Arrow */}
+      <div className="back-arrow" onClick={handleBackClick}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </div>
+      
       <h1 className="dashboard-title">Admin Dashboard</h1>
       <div className="employees-grid">
         {admins.map((admin) => (
@@ -114,10 +125,10 @@ const EmployeeAdmin = () => {
                 className={`toggle-admin-btn ${admin.role === 'admin' ? 'remove-admin-btn' : 'make-admin-btn'}`}
                 onClick={() => toggleAdminStatus(admin)}
               >
-                {admin.role === 'admin' ? 'Remove Admin' : 'Make Admin'}
+                <FontAwesomeIcon icon={faTrashAlt} />
               </button>
               <button className="edit-admin-btn" onClick={() => handleEditClick(admin)}>
-                Edit
+                <FontAwesomeIcon icon={faEdit} />
               </button>
             </div>
           </div>
@@ -182,10 +193,10 @@ const EmployeeAdmin = () => {
             </form>
             <div className="modal-actions">
               <button className="save-changes-btn" onClick={handleEditSubmit}>
-                Save Changes
+                <FontAwesomeIcon icon={faSave} />
               </button>
               <button className="cancel-btn" onClick={() => setIsEditing(false)}>
-                Cancel
+                <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
           </div>
